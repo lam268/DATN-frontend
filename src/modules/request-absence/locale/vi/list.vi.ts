@@ -1,0 +1,71 @@
+export default {
+    title: {
+        cancel: 'Hủy',
+        startTime: 'Ngày bắt đầu',
+        endTime: 'Ngày kết thúc',
+        reason: 'Lý do',
+        submit: 'Xác nhận',
+        waiting: 'Đang chờ',
+        history: 'Lịch sử',
+        status: 'Trạng thái',
+        action: 'Hành động',
+        startAt: 'Thời gian bắt đầu',
+        endAt: 'Thời gian kết thúc',
+        updatedAt: 'Thời gian tạo',
+        create: 'Tạo',
+        morning: 'Buổi sáng',
+        afternoon: 'Buổi chiều',
+        halfDay: 'Nửa ngày',
+        customDay: 'Điều chỉnh ngày',
+        allDay: 'Cả ngày',
+    },
+    filterForm: {
+        status: {
+            label: 'Trạng thái',
+            placeholder: 'Chọn trạng thái',
+            waiting: 'Đang xử lý',
+            approved: 'Xác nhận',
+            rejected: 'Từ chối',
+        },
+        keyword: {
+            label: 'Từ khoá',
+            placeholder: 'Nhập từ khoá',
+        },
+        startDate: {
+            label: 'Ngày bắt đầu',
+            placeholder: 'Chọn ngày bắt đầu',
+        },
+        endDate: {
+            label: 'Ngày kết thúc',
+            placeholder: 'Chọn ngày kết thúc',
+        },
+        to: 'Đến',
+    },
+    confirmDelete: {
+        deleteConfirmText: 'Bạn có chắc chắn muốn xóa yêu cầu xin nghỉ này không?',
+        deleteConfirmTitle: 'Xóa yêu cầu xin nghỉ',
+        success: {
+            title: 'Thông báo',
+            message: 'Xóa thành công',
+        },
+    },
+    confirmUpdate: {
+        approvedConfirmText: 'Bạn có chắc chắn muốn xác nhận yêu cầu xin nghỉ này không?',
+        rejectedConfirmText: 'Bạn có chắc chắn muốn từ chối yêu cầu xin nghỉ này không?',
+        approvedConfirmTitle: 'Xác nhận yêu cầu xin nghỉ',
+        rejectedConfirmTitle: 'Từ chối yêu cầu xin nghỉ',
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy',
+        success: {
+            title: 'Thành công',
+            message: 'Cập nhật yêu cầu xin nghỉ thành công',
+        },
+    },
+    sort: {
+        fullName: 'Họ tên',
+        startAt: 'Ngày bắt đầu',
+        endAt: 'Ngày kết thúc',
+        sort: 'Sắp xếp',
+        time: 'Thời gian tạo',
+    },
+};
