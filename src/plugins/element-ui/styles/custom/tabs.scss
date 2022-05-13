@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/_variables.scss';
+
+.el-tabs__header {
+    margin: 0;
+    background-color: $--color-gray-200;
+}
+
+.el-tabs--border-card {
+    .el-tabs__content {
+        padding: 15px 0px !important;
+    }
+}
+.el-table__header-wrapper {
+    .el-table__header {
+        width: 100% !important;
+    }
+}
+.el-tabs__nav-scroll {
+    margin-left: 20px !important;
+    .el-tabs__nav > .el-tabs__active-bar {
+        background-color: rgb(255, 196, 0) !important;
+        height: 4px !important;
+    }
+    .el-tabs__nav > .el-tabs__item {
+        color: black !important;
+    }
+}

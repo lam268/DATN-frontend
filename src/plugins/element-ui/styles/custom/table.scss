@@ -1,0 +1,14 @@
+@import '../../../../assets//styles/variables';
+
+.el-table th.el-table__cell {
+    background-color: $--table-header-bg-color;
+    color: $--table-header-text-color;
+}
+.el-table .el-table__cell {
+    padding: 8px;
+}
+.el-table__cell {
+    .cell {
+        word-break: break-word !important;
+    }
+}

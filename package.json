@@ -9,9 +9,17 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "pinia": "^2.0.13",
+    "axios": "^0.27.2",
+    "element-plus": "^2.2.0",
+    "moment": "^2.29.3",
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.33",
-    "vue-router": "^4.0.14"
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2",
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2",
+    "vuex-module-decorators": "^2.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",

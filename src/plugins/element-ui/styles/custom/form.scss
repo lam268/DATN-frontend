@@ -1,0 +1,11 @@
+// @use 'var.scss' as *;
+
+.el-input__inner {
+    border-radius: 8px;
+    height: 34px !important;
+    line-height: 34px;
+}
+
+.el-textarea__inner {
+    border-radius: 8px;
+}
