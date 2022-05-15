@@ -57,7 +57,7 @@ export class UtilMixins extends Vue {
                   i18nKey: string;
                   params?: Record<string, string>;
               }
-            | string,
+            | string | undefined,
     ): string {
         if (typeof yupError === 'string') {
             return this.$t(yupError);
