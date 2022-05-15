@@ -1,79 +1,83 @@
 import capitalize from 'lodash/capitalize';
 import { MessageContext, MessageFunctionCallable } from '@intlify/runtime';
-import { DATE_TIME_FORMAT } from '@/common/constants';
 import moment from 'moment-timezone';
+import { DATE_TIME_FORMAT } from '@/common/constants';
 
 export default {
     mixed: {
         required: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName}`) + ` là trường bắt buộc`;
+            return capitalize(`The ${fieldName} field is required`);
         }) as MessageFunctionCallable,
         default: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} không hợp lệ`);
+            return capitalize(`The ${fieldName} field is invalid`);
         }) as MessageFunctionCallable,
-        selectRequired: `Đây là trường bắt buộc`,
+        selectRequired: `This field is required`,
         oneOf: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName}`) + ` là trường bắt buộc`;
+            return capitalize(`The ${fieldName} field is required`);
         }) as MessageFunctionCallable,
         notOneOf: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải là giá trị ngoại trừ: ${ctx.named('values')}`,
+                `${fieldName} must not be one of the following values: ${ctx.named(
+                    'values',
+                )}`,
             );
         }) as MessageFunctionCallable,
         defined: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải được định nghĩa`);
+            return capitalize(`${fieldName} must be defined`);
         }) as MessageFunctionCallable,
     },
 
     string: {
         length: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải đúng ${ctx.named('length')} ký tự`);
+            return capitalize(
+                `The ${fieldName} must be exactly ${ctx.named('length')} characters`,
+            );
         }) as MessageFunctionCallable,
         min: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải có ít nhất  ${ctx.named('length')} ký tự`,
+                `The ${fieldName} must be at least ${ctx.named('length')} characters`,
             );
         }) as MessageFunctionCallable,
         max: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} không được vượt quá ${ctx.named('length')} ký tự`,
+                `The ${fieldName} can not be over ${ctx.named('length')} characters`,
             );
         }) as MessageFunctionCallable,
         matches: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} không đúng định dạng`);
+            return capitalize(`The ${fieldName} must be correct format`);
         }) as MessageFunctionCallable,
         email: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} không đúng định dạng`);
+            return capitalize(`The ${fieldName} must be correct format`);
         }) as MessageFunctionCallable,
         url: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName}`) + ` phải đúng định dạng URL`;
+            return capitalize(`${fieldName}`) + ` must be a valid URL`;
         }) as MessageFunctionCallable,
         uuid: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName}`) + ` đúng địng dạng UUID`;
+            return capitalize(`${fieldName}`) + ` must be a valid UUID`;
         }) as MessageFunctionCallable,
         trim: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải được cắt chuỗi`);
+            return capitalize(`The ${fieldName} must be a trimmed string`);
         }) as MessageFunctionCallable,
         lowercase: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải là chữ thường`);
+            return capitalize(`The ${fieldName} must be a lowercase string`);
         }) as MessageFunctionCallable,
         uppercase: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải là chữ hoa`);
+            return capitalize(`The ${fieldName} must be a uppercase string`);
         }) as MessageFunctionCallable,
     },
 
@@ -81,32 +85,34 @@ export default {
         min: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải có giá trị thấp nhất là ${ctx.named('min')}`,
+                `The ${fieldName} field must be at least ${ctx.named('min')}`,
             );
         }) as MessageFunctionCallable,
         max: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} không được vượt quá ${ctx.named('max')}`);
+            return capitalize(
+                `The ${fieldName} field can not be over ${ctx.named('max')}`,
+            );
         }) as MessageFunctionCallable,
         lessThan: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải ít hơn ${ctx.named('less')}`);
+            return capitalize(`${fieldName} must be less than ${ctx.named('less')}`);
         }) as MessageFunctionCallable,
         moreThan: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải lớn hơn ${ctx.named('more')}`);
+            return capitalize(`${fieldName} must be greater than ${ctx.named('more')}`);
         }) as MessageFunctionCallable,
         positive: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải là số dương`);
+            return capitalize(`${fieldName} must be a positive number`);
         }) as MessageFunctionCallable,
         negative: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải là số âm`);
+            return capitalize(`${fieldName} must be a negative number`);
         }) as MessageFunctionCallable,
         integer: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải là số nguyên`);
+            return capitalize(`${fieldName} must be an integer`);
         }) as MessageFunctionCallable,
     },
 
@@ -114,7 +120,7 @@ export default {
         max: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải nhỏ hơn ngày ${moment(
+                `The ${fieldName} field can not be over ${moment(
                     ctx.named('max') as string,
                 ).format(DATE_TIME_FORMAT.YYYY_MM_DD_HYPHEN_HH_MM_COLON)}`,
             );
@@ -122,7 +128,7 @@ export default {
         min: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải lớn hơn ngày ${moment(
+                `The ${fieldName} field must be at least ${moment(
                     ctx.named('min') as string,
                 ).format(DATE_TIME_FORMAT.YYYY_MM_DD_HYPHEN_HH_MM_COLON)}`,
             );
@@ -132,31 +138,39 @@ export default {
     boolean: {
         isValue: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải có giá trị là ${ctx.named('value')}`);
+            return capitalize(`${fieldName} field must be ${ctx.named('value')}`);
         }) as MessageFunctionCallable,
     },
 
     array: {
         min: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải có ít nhất ${ctx.named('min')} phần tử`);
+            return capitalize(
+                `The ${fieldName} field must have at least ${ctx.named('min')} items`,
+            );
         }) as MessageFunctionCallable,
         max: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
             return capitalize(
-                `${fieldName} phải ít hơn hoặc bằng ${ctx.named('max')} phần tử`,
+                `The ${fieldName} field must have less than or equal to ${ctx.named(
+                    'max',
+                )} items`,
             );
         }) as MessageFunctionCallable,
         length: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải có ${ctx.named('length')} phần tử`);
+            return capitalize(
+                `The ${fieldName} field must have ${ctx.named('length')} items`,
+            );
         }) as MessageFunctionCallable,
     },
 
     object: {
         noUnknown: ((ctx: MessageContext) => {
             const fieldName = ctx.linked(`common.common.fields.${ctx.named('path')}`);
-            return capitalize(`${fieldName} phải có khóa: ${ctx.named('unknown')}`);
+            return capitalize(
+                `The ${fieldName} field has unspecified keys: ${ctx.named('unknown')}`,
+            );
         }) as MessageFunctionCallable,
     },
 };

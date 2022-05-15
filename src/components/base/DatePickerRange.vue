@@ -107,7 +107,7 @@ export default class DatePicker extends Vue {
 </script>
 
 <style scoped>
-:dee(.el-input) {
+:deep(.el-input) {
     width: 100% !important;
 }
 .mark-required {
