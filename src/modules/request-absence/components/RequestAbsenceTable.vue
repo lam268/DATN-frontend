@@ -81,7 +81,7 @@
                         >
                             <el-button
                                 @click="handleUpdate(scope.row)"
-                                v-if="isCanUpdate(scope.row?.status)"
+                                v-if="isCanUpdate(scope.row)"
                                 size="mini"
                                 type="warning"
                             >
@@ -95,7 +95,7 @@
                         >
                             <el-button
                                 @click="handleDelete(scope.row.id)"
-                                v-if="isCanDelete(scope.row?.status)"
+                                v-if="isCanDelete(scope.row)"
                                 type="danger"
                                 size="mini"
                             >
@@ -116,6 +116,8 @@ import { RequestAbsenceStatus } from '../contants';
 import { RequestAbsenceMixins } from '../mixins';
 import { requestAbsenceModule } from '../store';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@element-plus/icons-vue';
+import { IRequestAbsence } from '../types';
+import { appService } from '@/utils/app';
 @Options({
     components: {
         EditIcon,
@@ -123,27 +125,29 @@ import { Edit as EditIcon, Delete as DeleteIcon } from '@element-plus/icons-vue'
     },
 })
 export default class RequestAbsenceTable extends mixins(RequestAbsenceMixins) {
-    isCanUpdate(status: RequestAbsenceStatus): boolean {
+    isCanUpdate(requestAbsence: IRequestAbsence): boolean {
         return (
             checkUserHasPermission(requestAbsenceModule.userPermissions, [
                 `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.UPDATE}`,
             ]) ||
-            (status === RequestAbsenceStatus.WAITING &&
+            (requestAbsence.status === RequestAbsenceStatus.WAITING &&
                 checkUserHasPermission(requestAbsenceModule.userPermissions, [
                     `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.UPDATE_PERSONAL}`,
-                ]))
+                ]) &&
+                appService.getUser().id === requestAbsence.userId)
         );
     }
 
-    isCanDelete(status: RequestAbsenceStatus): boolean {
+    isCanDelete(requestAbsence: IRequestAbsence): boolean {
         return (
             checkUserHasPermission(requestAbsenceModule.userPermissions, [
                 `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.DELETE}`,
             ]) ||
-            (status !== RequestAbsenceStatus.APPROVED &&
+            (requestAbsence.status !== RequestAbsenceStatus.APPROVED &&
                 checkUserHasPermission(requestAbsenceModule.userPermissions, [
                     `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.DELETE_PERSONAL}`,
-                ]))
+                ]) &&
+                appService.getUser().id === requestAbsence.userId)
         );
     }
 

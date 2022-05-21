@@ -103,10 +103,7 @@ export default class RoleForm extends mixins(UtilMixins) {
     async onClickCreateButton(): Promise<void> {
         const result = await this.form.onSubmit();
         if (!result) {
-            (document.getElementById('permission-form') as Element).scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            });
+            roleModule.triggerScrollToTopOfPermissionList();
         }
     }
 
@@ -125,10 +122,8 @@ export default class RoleForm extends mixins(UtilMixins) {
             });
             this.selectedPermissionIds = listIds;
         }
-        (document.getElementById('permission-form') as Element).scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
+
+        roleModule.triggerScrollToTopOfPermissionList();
     }
 }
 </script>

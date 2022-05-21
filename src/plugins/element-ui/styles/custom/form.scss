@@ -1,9 +1,15 @@
 // @use 'var.scss' as *;
 
-.el-input__inner {
-    border-radius: 8px;
+.el-input__wrapper,
+.el-input__inner,
+.el-date-editor {
+    border-radius: 8px !important;
     height: 34px !important;
-    line-height: 34px;
+    line-height: 34px !important;
+    width: 100% !important;
+}
+.el-date-editor {
+    background-color: #ffffff !important;
 }
 
 .el-textarea__inner {

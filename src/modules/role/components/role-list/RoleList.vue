@@ -139,7 +139,7 @@ export default class RoleList extends Vue {
     width: 18px !important;
     height: 22px !important;
     background: transparent;
-    border: 0px;
+    border: none !important;
     color: #2396d9 !important;
     .el-icon {
         font-size: 18px !important;

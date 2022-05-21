@@ -20,6 +20,7 @@ import {
 import { appModule } from '@/store/app';
 import { IAppliedPosition, IUserPosition } from '@/modules/setting/type';
 import moment from 'moment';
+import { UserGenderSettings } from '@/modules/user/constants';
 
 export class UtilMixins extends Vue {
     // Common variable
@@ -57,7 +58,7 @@ export class UtilMixins extends Vue {
                   i18nKey: string;
                   params?: Record<string, string>;
               }
-            | string | undefined,
+            | string,
     ): string {
         if (typeof yupError === 'string') {
             return this.$t(yupError);
@@ -97,5 +98,30 @@ export class UtilMixins extends Vue {
 
     parseDatePickerRangeValues(dateRange: string[] | Date[]): string[] | null {
         return parseDatePickerRangeValues(dateRange);
+    }
+
+    scrollToError(className: string): void {
+        setTimeout(() => {
+            const collectionElement = Array.from(
+                document.getElementsByClassName(className),
+            );
+
+            if (collectionElement[0]) {
+                collectionElement[0].scrollIntoView({
+                    block: 'start',
+                    inline: 'start',
+                });
+            }
+        }, 0);
+    }
+
+    getGenderOptions(): ISelectOptions[] {
+        const currentLanguage = appModule.selectedLanguage as SupportLanguage;
+        return parseSelectOptions(
+            UserGenderSettings.map((gender) => ({
+                value: gender.code,
+                label: gender.value?.[currentLanguage],
+            })),
+        );
     }
 }

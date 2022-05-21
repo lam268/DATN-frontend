@@ -5,6 +5,7 @@
         @closed="onClosedPopup"
         @open="form.openPopup"
         custom-class="timekeeping-form-popup"
+        destroy-on-close
     >
         <template #title>
             <h3 class="text-left title-left">
@@ -63,13 +64,15 @@
             </div>
         </div>
         <template #footer>
-            <div class="d-flex justify-content-center footer">
+            <div
+                class="d-flex justify-content-center footer"
+                v-if="isCanDelete && !isCreate"
+            >
                 <el-button @click="onClickCancel">
                     {{ $t('timekeeping.list.title.cancel') }}
                 </el-button>
                 <el-button
                     type="danger"
-                    v-if="isCanDelete && !isCreate"
                     @click="form.onDelete"
                     class="col-auto d-flex justify-content-center"
                 >
@@ -82,6 +85,26 @@
                 >
                     {{ $t('timekeeping.list.title.submit') }}
                 </el-button>
+            </div>
+            <div class="row" v-else>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end footer">
+                        <el-button @click="onClickCancel">
+                            {{ $t('timekeeping.list.title.cancel') }}
+                        </el-button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-start footer">
+                        <el-button
+                            type="primary"
+                            @click="form.submit"
+                            v-if="(isCanUpdate && !isCreate) || (isCanCreate && isCreate)"
+                        >
+                            {{ $t('timekeeping.list.title.submit') }}
+                        </el-button>
+                    </div>
+                </div>
             </div>
         </template>
     </el-dialog>

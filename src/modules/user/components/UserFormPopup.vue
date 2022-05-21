@@ -275,11 +275,11 @@
 
 <script lang="ts">
 import { UtilMixins } from '@/mixins/utilMixins';
-import { checkUserHasPermission, parseLanguageSelectOptions } from '@/utils/helper';
+import { checkUserHasPermission } from '@/utils/helper';
 import { Options, setup } from 'vue-class-component';
 import { mixins } from 'vue-property-decorator';
 import { initForm, parseDataToSubmit, submitForm } from '../composition/userForm';
-import { GenderOptions, userSchema } from '../constants';
+import { userSchema } from '../constants';
 import { userModule } from '../store';
 import { IUser } from '../types';
 import * as yup from 'yup';
@@ -325,7 +325,7 @@ export default class UserForm extends mixins(UtilMixins) {
 
     // for options of all dropdown lists
     get genderOptions(): ISelectOptions[] {
-        return parseLanguageSelectOptions(GenderOptions);
+        return this.getGenderOptions();
     }
 
     get roleOptions(): Record<string, string | number>[] {

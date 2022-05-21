@@ -4,7 +4,11 @@
             {{ $t('role.list.form.permission.label') }}
             <span style="color: red">*</span>
         </label>
-        <div class="w-70 permission-container" id="permission-form">
+        <el-scrollbar
+            ref="scrollBar"
+            class="w-70 permission-container"
+            id="permission-form"
+        >
             <div class="check-all-button position-relative">
                 <el-checkbox
                     v-model="checkAll"
@@ -39,7 +43,7 @@
                     </el-tree>
                 </div>
             </div>
-        </div>
+        </el-scrollbar>
     </div>
 </template>
 
@@ -57,8 +61,8 @@ import {
     IRole,
     ITreeStatus,
     PermissionTree,
+    ScrollBar,
 } from '../../types';
-
 export default class Permission extends Vue {
     defaultProps = {
         label: 'name',
@@ -72,10 +76,6 @@ export default class Permission extends Vue {
     selectedPermissionIds!: number[];
 
     checkAll = false;
-
-    roleName(name: string): string {
-        return `role.list.common.headerTable.${camelCase(name)}`;
-    }
 
     get permissionList(): IPermission[] {
         return roleModule.permissionList;
@@ -124,6 +124,14 @@ export default class Permission extends Vue {
 
     get role(): IRole {
         return roleModule.role;
+    }
+
+    get isScrollToTopOfPermissionList(): boolean {
+        return roleModule.isScrollToTopOfPermissionList;
+    }
+
+    roleName(name: string): string {
+        return `role.list.common.headerTable.${camelCase(name)}`;
     }
 
     // user click check all button
@@ -230,6 +238,14 @@ export default class Permission extends Vue {
             this.updateCheckAllStatus();
         });
     }
+
+    @Watch('isScrollToTopOfPermissionList')
+    onChangeIsScrollToTopOfPermissionList(): void {
+        (this.$refs.scrollBar as ScrollBar).scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
 }
 </script>
 
@@ -253,22 +269,6 @@ export default class Permission extends Vue {
     .el-tree {
         background: transparent;
         margin-right: 24px;
-    }
-
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px rgba(222, 223, 255, 0.5);
-        border-radius: 10px;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: rgba(222, 223, 255, 0.9);
-        border-radius: 10px;
     }
 }
 .check-all-button {

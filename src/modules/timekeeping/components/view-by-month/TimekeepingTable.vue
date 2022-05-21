@@ -42,6 +42,7 @@
                             :content="generateTooltip(scope.row?.timekeepings?.[key])"
                             raw-content
                             show-after="100"
+                            v-if="shouldDisplayTooltip(scope.row?.timekeepings?.[key])"
                         >
                             <div class="text-center tooltip-hover">
                                 <SelectIcon
@@ -55,16 +56,14 @@
                                 <p
                                     class="timekeeping-txt"
                                     v-else-if="
-                                        shouldShowAbsenceDetail(
+                                        shouldShowWorkingHour(
                                             scope.row.timekeepings?.[key],
-                                            key,
                                         )
                                     "
                                 >
                                     {{
-                                        getAbsenceDurationDisplay(
-                                            scope.row.timekeepings?.[key],
-                                            key,
+                                        getWorkingHour(
+                                            scope.row.timekeepings?.[key]?.workingHours,
                                         )
                                     }}
                                 </p>
@@ -85,7 +84,7 @@ import { TimeKeepingMixins } from '../../mixins';
 import i18n from '@/plugins/vue-i18n';
 import TimeKeepingForm from '../timekeeping-form/TimekeepingForm.vue';
 import UserColumn from '../UserColumn.vue';
-import { checkWeekend } from '@/utils/helper';
+import round from 'lodash/round';
 import { Calendar as CalendarIcon, Select as SelectIcon } from '@element-plus/icons-vue';
 @Options({
     components: {
@@ -100,21 +99,20 @@ export default class TimeKeepingTable extends mixins(TimeKeepingMixins) {
         return Object.keys(this.timeKeepingList[0]?.timekeepings || {}) || [];
     }
 
-    getAbsenceDurationDisplay(item: ITimekeeping, date: string): string {
-        if (checkWeekend(date)) {
-            return '';
-        } else if (item?.requestAbsences.length) {
-            const result = this.calculateAbsenceTime(item.requestAbsences);
-            return `${this.convertMinuteToHour(result)} ${i18n.global.t(
+    getWorkingHour(workingHours: number): string {
+        if (workingHours > 1) {
+            return `${round(workingHours, 2)} ${i18n.global.t(
                 'timekeeping.list.timeLine.hours',
             )}`;
-        } else {
-            return '';
         }
+
+        return `${round(workingHours, 2)} ${i18n.global.t(
+            'timekeeping.list.timeLine.hour',
+        )}`;
     }
 
-    shouldShowAbsenceDetail(items: ITimekeeping, date: string): boolean {
-        return !!items?.requestAbsences?.length && !checkWeekend(date);
+    shouldShowWorkingHour(item: ITimekeeping): boolean {
+        return item.workingHours > 0;
     }
 
     generateDate(date: string): string {
@@ -129,7 +127,6 @@ export default class TimeKeepingTable extends mixins(TimeKeepingMixins) {
     cursor: pointer;
 }
 .timekeeping-txt {
-    color: white;
     font-size: 10px;
     font-weight: 500;
     margin-bottom: 0;

@@ -63,8 +63,17 @@ export default class TimeKeepingTabs extends mixins(TimeKeepingMixins) {
             timeKeepingModule.setSelectedTab(this.dateOptions.week as string);
             startDate = moment().startOf('week').fmFullTimeString();
             endDate = moment().endOf('week').endOfDay().fmFullTimeString();
+            timeKeepingModule.setTimeKeepingFilter({
+                selectedWeek: moment()
+                    .subtract(1, 'week')
+                    .endOf('week')
+                    .fmFullTimeString(),
+            });
         } else {
             timeKeepingModule.setSelectedTab(this.dateOptions.month as string);
+            timeKeepingModule.setTimeKeepingFilter({
+                selectedMonth: moment().startOf('month').fmFullTimeString(),
+            });
             startDate = moment().startOf('month').fmFullTimeString();
             endDate = moment().endOf('month').endOfDay().fmFullTimeString();
         }

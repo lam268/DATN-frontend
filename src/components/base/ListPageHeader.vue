@@ -306,7 +306,7 @@ export default class ListPageHeader extends Vue {
         }
     }
 
-    :deep(.el-input__inner) {
+    :deep(.el-input__wrapper) {
         border-color: transparent;
         color: #212121;
         padding: 0px 35px 0px 0px;

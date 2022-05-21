@@ -54,6 +54,10 @@ export type PermissionTree = Vue & {
     setChecked: (data: IPermissionTree | number, checked: boolean, deep: boolean) => void;
 };
 
+export type ScrollBar = Vue & {
+    scrollTo: (data: Record<string, number | string>) => void;
+};
+
 export interface IFormCreateRole {
     name: string;
     permissionIds: number[];

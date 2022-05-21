@@ -252,8 +252,6 @@ import { Options, setup } from 'vue-class-component';
 import { mixins } from 'vue-property-decorator';
 import { initEditForm } from '../form';
 import { authModule } from '../store';
-import { GenderOptions } from '@/modules/user/constants';
-import { parseLanguageSelectOptions } from '@/utils/helper';
 import { ISelectOptions } from '@/common/types';
 import { UtilMixins } from '@/mixins/utilMixins';
 import { FormValidationResult } from 'vee-validate';
@@ -284,7 +282,7 @@ export default class ProfileFormPopup extends mixins(UtilMixins) {
     }
 
     get genderOptions(): ISelectOptions[] {
-        return parseLanguageSelectOptions(GenderOptions);
+        return this.getGenderOptions();
     }
 
     get userPositionOptions(): ISelectOptions[] {

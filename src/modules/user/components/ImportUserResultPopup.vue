@@ -23,11 +23,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateFullName(scope.row.fullName)"
+                                :content="errors[scope.row?.index]?.fullName"
                                 placement="bottom"
-                                v-if="validateFullName(scope.row.fullName)"
+                                v-if="errors[scope.row?.index]?.fullName"
                             >
-                                <div class="error w-100">! {{ scope.row.fullName }}</div>
+                                <div class="error w-100">
+                                    {{ scope.row.fullName }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>{{ scope.row.fullName }}</div>
                         </template>
@@ -37,30 +39,11 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateEmail(scope.row.email, scope.row.index)"
+                                :content="errors[scope.row?.index]?.email"
                                 placement="bottom"
-                                v-if="validateEmail(scope.row.email, scope.row.index)"
+                                v-if="errors[scope.row?.index]?.email"
                             >
-                                <div class="error w-100">! {{ scope.row.email }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'email',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'email',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.email }}</div>
+                                <div class="error w-100">{{ scope.row.email }}&nbsp;</div>
                             </el-tooltip>
                             <div class="w-100" v-else>{{ scope.row.email }}</div>
                         </template>
@@ -73,12 +56,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validatePhoneNumber(scope.row.phoneNumber)"
+                                :content="errors[scope.row?.index]?.phoneNumber"
                                 placement="bottom"
-                                v-if="validatePhoneNumber(scope.row.phoneNumber)"
+                                v-if="errors[scope.row?.index]?.phoneNumber"
                             >
                                 <div class="w-100 error">
-                                    ! {{ scope.row.phoneNumber }}
+                                    {{ scope.row.phoneNumber }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>{{ scope.row.phoneNumber }}</div>
@@ -92,11 +75,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateBirthday(scope.row.birthday)"
+                                :content="errors[scope.row?.index]?.birthday"
                                 placement="bottom"
-                                v-if="validateBirthday(scope.row.birthday)"
+                                v-if="errors[scope.row?.index]?.birthday"
                             >
-                                <div class="w-100 error">! {{ scope.row.birthday }}</div>
+                                <div class="w-100 error">
+                                    {{ scope.row.birthday }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>{{ scope.row.birthday }}</div>
                         </template>
@@ -109,16 +94,16 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateGender(scope.row.gender)"
+                                :content="errors[scope.row?.index]?.gender"
                                 placement="bottom"
-                                v-if="validateGender(scope.row.gender)"
+                                v-if="errors[scope.row?.index]?.gender"
                             >
-                                <div class="error w-100">! {{ scope.row.gender }}</div>
+                                <div class="error w-100">
+                                    {{ scope.row.gender }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
-                                {{
-                                    $t(`user.list.filterForm.gender.${scope.row.gender}`)
-                                }}
+                                {{ getUserGender(scope.row.gender) }}
                             </div>
                         </template>
                     </el-table-column>
@@ -130,31 +115,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validatePosition(scope.row.position)"
+                                :content="errors[scope.row?.index]?.position"
                                 placement="bottom"
-                                v-if="validatePosition(scope.row.position)"
-                            >
-                                <div class="error w-100">! {{ scope.row.position }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'position',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'position',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
+                                v-if="errors[scope.row?.index]?.position"
                             >
                                 <div class="error w-100">
-                                    ! {{ getUserPosition(scope.row.position) }}
+                                    {{ scope.row.position }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -167,30 +133,11 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateRole(scope.row.role)"
+                                :content="errors[scope.row?.index]?.role"
                                 placement="bottom"
-                                v-if="validateRole(scope.row.role)"
+                                v-if="errors[scope.row?.index]?.role"
                             >
-                                <div class="error w-100">! {{ scope.row.role }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'role',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'role',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.role }}</div>
+                                <div class="error w-100">{{ scope.row.role }}&nbsp;</div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.role }}
@@ -205,43 +152,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateBankAccount(
-                                        scope.row.bankAccount,
-                                        scope.row.index,
-                                    )
-                                "
+                                :content="errors[scope.row?.index]?.bankAccount"
                                 placement="bottom"
-                                v-if="
-                                    validateBankAccount(
-                                        scope.row.bankAccount,
-                                        scope.row.index,
-                                    )
-                                "
+                                v-if="errors[scope.row?.index]?.bankAccount"
                             >
                                 <div class="error w-100">
-                                    ! {{ scope.row.bankAccount }}
-                                </div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'bankAccount',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'bankAccount',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">
-                                    ! {{ scope.row.bankAccount }}
+                                    {{ scope.row.bankAccount }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -254,30 +170,11 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateBank(scope.row.bank)"
+                                :content="errors[scope.row?.index]?.bank"
                                 placement="bottom"
-                                v-if="validateBank(scope.row.bank)"
+                                v-if="errors[scope.row?.index]?.bank"
                             >
-                                <div class="error w-100">! {{ scope.row.bank }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'bank',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'bank',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.bank }}</div>
+                                <div class="error w-100">{{ scope.row.bank }}&nbsp;</div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.bank }}
@@ -292,40 +189,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateCitizenId(
-                                        scope.row.citizenId,
-                                        scope.row.index,
-                                    )
-                                "
+                                :content="errors[scope.row?.index]?.citizenId"
                                 placement="bottom"
-                                v-if="
-                                    validateCitizenId(
-                                        scope.row.citizenId,
-                                        scope.row.index,
-                                    )
-                                "
+                                v-if="errors[scope.row?.index]?.citizenId"
                             >
-                                <div class="error w-100">! {{ scope.row.citizenId }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'citizenId',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'citizenId',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.citizenId }}</div>
+                                <div class="error w-100">
+                                    {{ scope.row.citizenId }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.citizenId }}
@@ -340,16 +210,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateCitizenIdIssuedAt(scope.row.citizenIdIssuedAt)
-                                "
+                                :content="errors[scope.row?.index]?.citizenIdIssuedAt"
                                 placement="bottom"
-                                v-if="
-                                    validateCitizenIdIssuedAt(scope.row.citizenIdIssuedAt)
-                                "
+                                v-if="errors[scope.row?.index]?.citizenIdIssuedAt"
                             >
                                 <div class="w-100 error">
-                                    ! {{ scope.row.citizenIdIssuedAt }}
+                                    {{ scope.row.citizenIdIssuedAt }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -365,16 +231,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateIdCardIssuePlace(scope.row.idCardIssuePlace)
-                                "
+                                :content="errors[scope.row?.index]?.idCardIssuePlace"
                                 placement="bottom"
-                                v-if="
-                                    validateIdCardIssuePlace(scope.row.idCardIssuePlace)
-                                "
+                                v-if="errors[scope.row?.index]?.idCardIssuePlace"
                             >
                                 <div class="w-100 error">
-                                    ! {{ scope.row.idCardIssuePlace }}
+                                    {{ scope.row.idCardIssuePlace }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -390,11 +252,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateAddress(scope.row.address)"
+                                :content="errors[scope.row?.index]?.address"
                                 placement="bottom"
-                                v-if="validateAddress(scope.row.address)"
+                                v-if="errors[scope.row?.index]?.address"
                             >
-                                <div class="w-100 error">! {{ scope.row.address }}</div>
+                                <div class="w-100 error">
+                                    {{ scope.row.address }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.address }}
@@ -409,14 +273,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateHometownAddress(scope.row.hometownAddress)
-                                "
+                                :content="errors[scope.row?.index]?.hometownAddress"
                                 placement="bottom"
-                                v-if="validateHometownAddress(scope.row.hometownAddress)"
+                                v-if="errors[scope.row?.index]?.hometownAddress"
                             >
                                 <div class="w-100 error">
-                                    ! {{ scope.row.hometownAddress }}
+                                    {{ scope.row.hometownAddress }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -432,32 +294,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateTaxCode(scope.row.taxCode, scope.row.index)
-                                "
+                                :content="errors[scope.row?.index]?.taxCode"
                                 placement="bottom"
-                                v-if="validateTaxCode(scope.row.taxCode, scope.row.index)"
+                                v-if="errors[scope.row?.index]?.taxCode"
                             >
-                                <div class="error w-100">! {{ scope.row.taxCode }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'taxCode',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'taxCode',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.taxCode }}</div>
+                                <div class="error w-100">
+                                    {{ scope.row.taxCode }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.taxCode }}
@@ -472,43 +315,12 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="
-                                    validateSocialInsurance(
-                                        scope.row.socialInsurance,
-                                        scope.row.index,
-                                    )
-                                "
+                                :content="errors[scope.row?.index]?.socialInsurance"
                                 placement="bottom"
-                                v-if="
-                                    validateSocialInsurance(
-                                        scope.row.socialInsurance,
-                                        scope.row.index,
-                                    )
-                                "
+                                v-if="errors[scope.row?.index]?.socialInsurance"
                             >
                                 <div class="error w-100">
-                                    ! {{ scope.row.socialInsurance }}
-                                </div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'socialInsurance',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'socialInsurance',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">
-                                    ! {{ scope.row.socialInsurance }}
+                                    {{ scope.row.socialInsurance }}&nbsp;
                                 </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
@@ -524,30 +336,13 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateProvince(scope.row.province)"
+                                :content="errors[scope.row?.index]?.province"
                                 placement="bottom"
-                                v-if="validateProvince(scope.row.province)"
+                                v-if="errors[scope.row?.index]?.province"
                             >
-                                <div class="error w-100">! {{ scope.row.province }}</div>
-                            </el-tooltip>
-                            <el-tooltip
-                                class="box-item"
-                                effect="dark"
-                                :content="
-                                    getImportErrorByFieldName(
-                                        'province',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                                placement="bottom"
-                                v-else-if="
-                                    getImportErrorByFieldName(
-                                        'province',
-                                        importErrors?.[scope.row.index]?.errors,
-                                    )
-                                "
-                            >
-                                <div class="error w-100">! {{ scope.row.province }}</div>
+                                <div class="error w-100">
+                                    {{ scope.row.province }}&nbsp;
+                                </div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.province }}
@@ -562,11 +357,11 @@
                             <el-tooltip
                                 class="box-item"
                                 effect="dark"
-                                :content="validateNote(scope.row.note)"
+                                :content="errors[scope.row?.index]?.note"
                                 placement="bottom"
-                                v-if="validateNote(scope.row.note)"
+                                v-if="errors[scope.row?.index]?.note"
                             >
-                                <div class="w-100 error">! {{ scope.row.note }}</div>
+                                <div class="w-100 error">{{ scope.row.note }}&nbsp;</div>
                             </el-tooltip>
                             <div class="w-100" v-else>
                                 {{ scope.row.note }}
@@ -624,18 +419,18 @@ import {
 } from '@/common/constants';
 import { appModule } from '@/store/app';
 import { ElLoading } from 'element-plus';
-import { IImportError, IImportResponse } from '@/common/types';
-import { showErrorNotificationFunction } from '@/utils/helper';
+import { parseImportErrors, showErrorNotificationFunction } from '@/utils/helper';
 import { userModule } from '../store';
 import { IImportUser } from '../types';
-import { UserGender } from '../constants';
+import { UserGender, UserGenderSettings } from '../constants';
 import { userApiService } from '../services/api.service';
 
 @Options({})
 export default class ImportUserResultPopup extends mixins(UtilMixins) {
-    importErrors: Record<string, IImportResponse> | null = null;
-
     isDisabledSaveButton = false;
+
+    errors = {};
+    hasError = false;
 
     get importUserList(): IImportUser[] {
         return userModule.importUsers;
@@ -645,47 +440,121 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
         return userModule.isOpenImportUserResultPopUp;
     }
 
-    get hasError(): boolean {
-        let hasError = false;
+    validateData(): void {
+        this.hasError = false;
         this.importUserList.forEach((importUser) => {
             const userPosition = userModule.userPositionList.find(
                 (position) =>
-                    position.value.en === importUser.position ||
-                    position.value.vi === importUser.position,
+                    position?.value?.en?.toLocaleLowerCase() ===
+                        importUser?.position?.toLocaleLowerCase() ||
+                    position?.value?.vi?.toLocaleLowerCase() ===
+                        importUser?.position?.toLocaleLowerCase(),
             );
 
             if (userPosition) {
                 importUser.position = userPosition.code;
             } else {
-                hasError = true;
+                this.hasError = true;
             }
 
-            if (
-                this.validateEmail(importUser.email, importUser.index) ||
-                this.validateFullName(importUser.fullName) ||
-                this.validatePhoneNumber(importUser.phoneNumber) ||
-                this.validateBirthday(importUser.birthday) ||
-                this.validateCitizenId(importUser.citizenId, importUser.index) ||
-                this.validateCitizenIdIssuedAt(importUser.citizenIdIssuedAt) ||
-                this.validateAddress(importUser.address) ||
-                this.validateIdCardIssuePlace(importUser.idCardIssuePlace) ||
-                this.validateGender(importUser.gender) ||
-                this.validateRole(importUser.role) ||
-                this.validatePosition(importUser.position) ||
-                this.validateNote(importUser.note) ||
-                this.validateSocialInsurance(
+            const userGender = UserGenderSettings.find(
+                (gender) =>
+                    gender?.value?.en?.toLocaleLowerCase() ===
+                        importUser?.gender?.toLocaleLowerCase() ||
+                    gender?.value?.vi?.toLocaleLowerCase() ===
+                        importUser?.gender?.toLocaleLowerCase(),
+            );
+            if (userGender) {
+                importUser.gender = userGender.code;
+            } else {
+                this.hasError = true;
+            }
+
+            if (importUser.index !== undefined) {
+                const emailError = this.validateEmail(importUser.email, importUser.index);
+                const fullNameError = this.validateFullName(importUser.fullName);
+                const phoneNumberError = this.validatePhoneNumber(importUser.phoneNumber);
+                const birthdayError = this.validateBirthday(importUser.birthday);
+                const citizenIdError = this.validateCitizenId(
+                    importUser.citizenId,
+                    importUser.index,
+                );
+                const citizenIdIssuedAtError = this.validateCitizenIdIssuedAt(
+                    importUser.citizenIdIssuedAt,
+                );
+                const addressError = this.validateAddress(importUser.address);
+                const idCardIssuePlaceError = this.validateIdCardIssuePlace(
+                    importUser.idCardIssuePlace,
+                );
+                const genderError = this.validateGender(importUser.gender);
+                const roleError = this.validateRole(importUser.role);
+                const positionError = this.validatePosition(importUser.position);
+                const noteError = this.validateNote(importUser.note);
+                const socialInsuranceError = this.validateSocialInsurance(
                     importUser.socialInsurance,
                     importUser.index,
-                ) ||
-                this.validateTaxCode(importUser.taxCode, importUser.index) ||
-                this.validateBankAccount(importUser.bankAccount, importUser.index) ||
-                this.validateBank(importUser.bank) ||
-                this.validateProvince(importUser.province)
-            ) {
-                hasError = true;
+                );
+                const taxCodeError = this.validateTaxCode(
+                    importUser.taxCode,
+                    importUser.index,
+                );
+                const bankAccountError = this.validateBankAccount(
+                    importUser.bankAccount,
+                    importUser.index,
+                );
+                const bankError = this.validateBank(importUser.bank);
+                const provinceError = this.validateProvince(importUser.province);
+                const hometownAddressError = this.validateHometownAddress(
+                    importUser.hometownAddress,
+                );
+                this.errors = {
+                    ...this.errors,
+                    [importUser.index]: {
+                        email: emailError,
+                        fullName: fullNameError,
+                        phoneNumber: phoneNumberError,
+                        birthday: birthdayError,
+                        citizenId: citizenIdError,
+                        citizenIdIssuedAt: citizenIdIssuedAtError,
+                        address: addressError,
+                        idCardIssuePlace: idCardIssuePlaceError,
+                        gender: genderError,
+                        role: roleError,
+                        position: positionError,
+                        note: noteError,
+                        socialInsurance: socialInsuranceError,
+                        taxCode: taxCodeError,
+                        bankAccount: bankAccountError,
+                        bank: bankError,
+                        province: provinceError,
+                        hometownAddress: hometownAddressError,
+                    },
+                };
+
+                if (
+                    emailError ||
+                    fullNameError ||
+                    phoneNumberError ||
+                    birthdayError ||
+                    citizenIdError ||
+                    citizenIdIssuedAtError ||
+                    addressError ||
+                    idCardIssuePlaceError ||
+                    genderError ||
+                    roleError ||
+                    positionError ||
+                    noteError ||
+                    socialInsuranceError ||
+                    taxCodeError ||
+                    bankAccountError ||
+                    bankError ||
+                    provinceError ||
+                    hometownAddressError
+                ) {
+                    this.hasError = true;
+                }
             }
         });
-        return hasError;
     }
 
     validateFullName(fullName: string): string {
@@ -910,7 +779,10 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
         return '';
     }
 
-    validateHometownAddress(hometownAddress: string): string {
+    validateHometownAddress(hometownAddress?: string): string {
+        if (!hometownAddress) {
+            return '';
+        }
         if (hometownAddress?.length > TEXTAREA_MAX_LENGTH) {
             return this.$t('user.form.import.hometownAddress.maxLength');
         }
@@ -945,7 +817,13 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
     }
 
     validateBank(bank: string): string {
-        if (bank?.length > INPUT_TEXT_MAX_LENGTH) {
+        if (!bank) {
+            return this.$t('user.form.import.bank.required');
+        }
+        if (!userModule.banks.map((bank) => bank.value).includes(bank)) {
+            return this.$t('user.form.import.bank.invalid');
+        }
+        if (bank.length > INPUT_TEXT_MAX_LENGTH) {
             return this.$t('user.form.import.bank.maxLength');
         }
         return '';
@@ -969,11 +847,12 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
         return currentPosition?.value?.[currentLanguage] || userPosition;
     }
 
-    getImportErrorByFieldName(fieldName: string, errors: IImportError[]): string {
-        if (!errors) {
-            return '';
-        }
-        return errors.find((error) => error.column === fieldName)?.errorMessage || '';
+    getUserGender(userGender: string): string {
+        const currentGender = UserGenderSettings.find(
+            (gender) => gender.code === userGender,
+        );
+        const currentLanguage = appModule.selectedLanguage as SupportLanguage;
+        return currentGender?.value?.[currentLanguage] || userGender;
     }
 
     async onClickSaveButton(): Promise<void> {
@@ -981,18 +860,12 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
         const importUsers = this.importUserList.map((importUser) => {
             return {
                 ...importUser,
-                phoneNumber: importUser.phoneNumber
-                    ? importUser.phoneNumber.toString()
-                    : '',
-                bankAccount: importUser.bankAccount
-                    ? importUser.bankAccount.toString()
-                    : '',
-                citizenId: importUser.citizenId ? importUser.citizenId.toString() : '',
-                taxCode: importUser.taxCode ? importUser.taxCode.toString() : '',
-                socialInsurance: importUser.socialInsurance
-                    ? importUser.socialInsurance.toString()
-                    : '',
-                note: importUser.note ? importUser.note.toString() : '',
+                phoneNumber: importUser.phoneNumber?.toString(),
+                bankAccount: importUser.bankAccount?.toString(),
+                citizenId: importUser.citizenId?.toString(),
+                taxCode: importUser.taxCode?.toString(),
+                socialInsurance: importUser.socialInsurance?.toString(),
+                note: importUser.note?.toString(),
                 birthday: importUser.birthday
                     ? moment(importUser.birthday, DATE_TIME_FORMAT.DD_MM_YYYY_SLASH)
                           .utc()
@@ -1029,7 +902,8 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
                 loading.close();
                 this.isDisabledSaveButton = false;
             } else {
-                this.importErrors = importUserResponses;
+                this.errors = parseImportErrors(importUserResponses);
+                this.scrollToError('error');
             }
         } else {
             showErrorNotificationFunction(response.message as string);
@@ -1038,7 +912,8 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
 
     openPopup(): void {
         this.isDisabledSaveButton = false;
-        this.importErrors = null;
+        this.validateData();
+        this.scrollToError('error');
     }
 
     closePopup(): void {
@@ -1060,10 +935,9 @@ export default class ImportUserResultPopup extends mixins(UtilMixins) {
 }
 :deep(td.el-table__cell) {
     padding: 0px !important;
-    :deep(.cell) {
+    .cell {
         height: 100%;
         width: 100%;
-        padding: 0px !important;
     }
 }
 </style>

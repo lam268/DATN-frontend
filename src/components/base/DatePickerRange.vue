@@ -38,7 +38,7 @@
 <script lang="ts">
 import { DATE_TIME_FORMAT } from '@/common/constants';
 import { Vue, Model, Prop } from 'vue-property-decorator';
-import { checkWeekend } from '@/utils/helper';
+import { isWeekend } from '@/utils/helper';
 import moment from 'moment';
 import isArray from 'lodash/isArray';
 
@@ -88,7 +88,7 @@ export default class DatePicker extends Vue {
             }
         }
         if (isDisabledWeekend) {
-            result = result || checkWeekend(time);
+            result = result || isWeekend(time);
         }
         if (this.disabledDates.length > 0) {
             result = result || this.disabledDates.includes(moment(time).fmDayString());
@@ -107,9 +107,6 @@ export default class DatePicker extends Vue {
 </script>
 
 <style scoped>
-:deep(.el-input) {
-    width: 100% !important;
-}
 .mark-required {
     color: red;
 }
@@ -119,8 +116,5 @@ export default class DatePicker extends Vue {
 }
 .w-70 {
     width: 70%;
-}
-:deep(.el-date-editor) {
-    width: 100% !important;
 }
 </style>

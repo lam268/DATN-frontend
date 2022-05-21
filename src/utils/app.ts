@@ -9,7 +9,7 @@ export enum AppEnum {
     LANG = 'LANG',
 }
 
-export const defaultLang = 'en';
+export const defaultLang = 'vi';
 
 class AppService {
     token: TokenService;

@@ -43,6 +43,7 @@ export default {
         checkIn: 'Giờ vào',
         checkOut: 'Giờ ra',
         hours: 'giờ',
+        hour: 'giờ',
         minutes: 'phút',
         noData: 'Không có dữ liệu',
         error: {

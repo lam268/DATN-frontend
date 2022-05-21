@@ -1,10 +1,10 @@
-import LocalStorage from '@/utils/localStorage';
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { HttpMiddleware } from './httpMiddleware';
 import { appModule } from '@/store/app';
+import { SupportLanguage } from '@/common/constants';
 export default class AuthMiddleware extends HttpMiddleware {
     async onRequest(config: AxiosRequestConfig): Promise<AxiosRequestConfig> {
-        config.headers['accept-language'] = LocalStorage.getLang();
+        config.headers['accept-language'] = SupportLanguage.VI;
         return config;
     }
 

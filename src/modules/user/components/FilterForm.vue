@@ -80,7 +80,7 @@ import { Prop, mixins } from 'vue-property-decorator';
 import { applyFilter, handleFilter } from '../composition/userList';
 import { ISelectOptions } from '@/common/types';
 import { parseLanguageSelectOptions } from '@/utils/helper';
-import { GenderOptions, StatusOptions } from '../constants';
+import { StatusOptions } from '../constants';
 import { userModule } from '../store';
 import { UtilMixins } from '@/mixins/utilMixins';
 
@@ -97,7 +97,7 @@ export default class FilterForm extends mixins(UtilMixins) {
     }
 
     get genderOptions(): ISelectOptions[] {
-        return parseLanguageSelectOptions(GenderOptions);
+        return this.getGenderOptions();
     }
 
     get provincesOptions(): ISelectOptions[] {

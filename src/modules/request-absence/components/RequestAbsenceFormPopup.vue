@@ -5,6 +5,7 @@
         @closed="closedPopup"
         @open="form.openPopup"
         custom-class="request-absence-form-popup"
+        destroy-on-close
     >
         <template #title>
             <h3 class="text-left">

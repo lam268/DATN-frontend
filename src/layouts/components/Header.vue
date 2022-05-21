@@ -34,12 +34,10 @@
 import { Options, Vue } from 'vue-class-component';
 import { appModule } from '@/store/app';
 import MenuAccount from './MenuAccount.vue';
-import MenuLanguage from './MenuLanguage.vue';
 
 @Options({
     components: {
         MenuAccount,
-        MenuLanguage,
     },
 })
 export default class Header extends Vue {

@@ -60,6 +60,7 @@ import { SupportLanguage } from '@/common/constants';
 import { Watch, mixins } from 'vue-property-decorator';
 import { IBodyResponse, IGetListResponse } from '@/common/types';
 import { PermissionResources, PermissionActions } from '@/modules/role/constants';
+import { contractTypeModule } from '../../store/contractType.store';
 import { SettingMixins } from '../../mixins';
 
 interface CalendarApi extends Vue {
@@ -93,12 +94,12 @@ export default class Calendar extends mixins(SettingMixins) {
                 moment(selectedDate.start).startOf('day').fmDayString()
             );
         });
-        if (existedHoliday) {
+        if (existedHoliday && this.isCanUpdate) {
             this.showUpdateHolidayFormPopup(existedHoliday);
             settingHolidayModule.setSelectedDate(
                 moment(selectedDate.start).fmDayString(),
             );
-        } else if (!existedHoliday) {
+        } else if (!existedHoliday && this.isCanUpdate) {
             settingHolidayModule.setSelectedDate(
                 moment(selectedDate.start).fmDayString(),
             );
@@ -108,7 +109,7 @@ export default class Calendar extends mixins(SettingMixins) {
 
     onClickHoliday = (holiday: EventClickArg): void => {
         const selectedHoliday = this.getHolidayById(+holiday.event.id);
-        if (selectedHoliday) {
+        if (selectedHoliday && this.isCanUpdate) {
             settingHolidayModule.setSelectedDate(selectedHoliday.date);
             this.showUpdateHolidayFormPopup(selectedHoliday);
         }
@@ -122,6 +123,12 @@ export default class Calendar extends mixins(SettingMixins) {
         ...calendarInitOptions,
         locale: this.calendarLocale,
     };
+
+    get isCanUpdate(): boolean {
+        return checkUserHasPermission(contractTypeModule.userPermissions, [
+            `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
+        ]);
+    }
 
     get selectedLanguage(): string {
         return appModule.selectedLanguage;

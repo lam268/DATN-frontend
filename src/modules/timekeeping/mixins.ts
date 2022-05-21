@@ -24,8 +24,7 @@ import {
     ICellColumn,
 } from './types';
 import { timeKeepingModule } from './store';
-import { IRequestAbsence } from '../request-absence/types';
-import { checkUserHasPermission, checkWeekend } from '@/utils/helper';
+import { checkUserHasPermission, isWeekend } from '@/utils/helper';
 import { IHoliday } from '../setting/type';
 import forEach from 'lodash/forEach';
 import cloneDeep from 'lodash/cloneDeep';
@@ -40,7 +39,7 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
                 clonedUserTimekeeping.paidLeaveHourThisMonth;
             forEach(userTimekeeping.timekeepings, (timekeeping, date) => {
                 const absenceTime = this.convertMinuteToHour(
-                    this.calculateAbsenceTime(timekeeping.requestAbsences),
+                    timekeeping.authorizedLeaveHours,
                 );
                 if (absenceTime > totalPaidLeaveHoursAvailable) {
                     clonedUserTimekeeping.timekeepings[date].hasEnoughPaidLeaveHours =
@@ -102,7 +101,7 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
         if (this.getHolidayTitleFromDate(date)) {
             return TimekeepingColors[RequestAbsenceType.HOLIDAY];
         }
-        if (checkWeekend(date)) {
+        if (isWeekend(date)) {
             return TimekeepingColors[RequestAbsenceType.WEEKEND];
         }
         // if user work all day
@@ -131,22 +130,19 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
         const date = data?.column.rawColumnKey;
         if (data?.column.property !== 'fullName' && data.row?.timekeepings?.[date]) {
             const backgroundColor = this.getCellColor(date, data.row.timekeepings[date]);
-            const textColor =
-                backgroundColor === TimekeepingColors[TimekeepingType.ALL_DAY]
-                    ? null
-                    : '#ffffff';
+            let textColor = null;
+
+            if (
+                !isWeekend(date) &&
+                backgroundColor !== TimekeepingColors[TimekeepingType.ALL_DAY]
+            ) {
+                textColor = '#ffffff';
+            }
             return {
                 backgroundColor: this.getCellColor(date, data.row.timekeepings[date]),
                 color: textColor,
             };
         }
-    }
-
-    shouldDisplayCell(timekeeping: ITimekeeping): boolean {
-        return (
-            (!!timekeeping?.checkIn && !!timekeeping?.checkOut) ||
-            !!timekeeping?.requestAbsences.length
-        );
     }
 
     getHolidayTitleFromDate(date: string): string | undefined {
@@ -159,7 +155,7 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
         }
         let holidayTooltip = '';
         let hasData = false;
-        const holidayTitle = this.getHolidayTitleFromDate(timekeeping.date);
+        const holidayTitle = this.getHolidayTitleFromDate(timekeeping.scanAt);
         if (holidayTitle) {
             holidayTooltip = `<p>${holidayTitle}</p>`;
             hasData = true;
@@ -237,50 +233,19 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
         }
     }
 
-    calculateAbsenceTime(requestAbsences: IRequestAbsence[]): number {
-        const timeEndMorningMoment = moment(
-            workingTimes.morning.endTime,
-            DATE_TIME_FORMAT.HH_MM_COLON,
-        );
-        const timeStartAfternoonMoment = moment(
-            workingTimes.afternoon.startTime,
-            DATE_TIME_FORMAT.HH_MM_COLON,
-        );
-
-        return requestAbsences.reduce((totalTime, currentAbsence) => {
-            const startAt = moment(
-                moment(currentAbsence.startAt).fmHourMinuteString(),
-                DATE_TIME_FORMAT.HH_MM_COLON,
-            );
-            const endAt = moment(
-                moment(currentAbsence.endAt).fmHourMinuteString(),
-                DATE_TIME_FORMAT.HH_MM_COLON,
-            );
-            if (
-                startAt.diff(timeEndMorningMoment) < 0 &&
-                endAt.diff(timeStartAfternoonMoment) > 0
-            ) {
-                totalTime += endAt.diff(startAt, 'minutes') - MINUTES_PER_HOUR;
-            } else {
-                totalTime += endAt.diff(startAt, 'minutes');
-            }
-            return totalTime;
-        }, 0);
-    }
-
     isWorkFullDay(timekeeping: ITimekeeping): boolean {
         return (
             !!timekeeping?.checkIn &&
             !!timekeeping?.checkOut &&
             !timekeeping.requestAbsences.length &&
             moment(
-                moment(timekeeping.checkIn).fmHourMinuteString(),
+                moment(timekeeping?.checkIn).fmHourMinuteString(),
                 DATE_TIME_FORMAT.HH_MM_COLON,
             ).isSameOrBefore(
                 moment(workingTimes.morning.startTime, DATE_TIME_FORMAT.HH_MM_COLON),
             ) &&
             moment(
-                moment(timekeeping.checkOut).fmHourMinuteString(),
+                moment(timekeeping?.checkOut).fmHourMinuteString(),
                 DATE_TIME_FORMAT.HH_MM_COLON,
             ).isSameOrAfter(
                 moment(workingTimes.afternoon.endTime, DATE_TIME_FORMAT.HH_MM_COLON),
@@ -293,11 +258,23 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
             return TimekeepingType.ALL_DAY;
         } else if (timekeeping?.checkIn && timekeeping?.checkOut) {
             return TimekeepingType.PARTIAL_DAY;
-        } else if (timekeeping.checkIn && !timekeeping.checkOut) {
+        } else if (timekeeping?.checkIn && !timekeeping?.checkOut) {
             return TimekeepingType.NOT_CHECKOUT;
         } else {
             return TimekeepingType.NOT_AVAILABLE;
         }
+    }
+
+    shouldDisplayTooltip(timekeeping: ITimekeeping | undefined): boolean {
+        if (!timekeeping) {
+            return false;
+        }
+        return (
+            !!timekeeping?.checkIn ||
+            !!timekeeping?.checkOut ||
+            !!timekeeping?.requestAbsences?.length ||
+            !!this.getHolidayTitleFromDate(moment(timekeeping?.scanAt).fmDayString())
+        );
     }
 
     /**

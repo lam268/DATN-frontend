@@ -1,4 +1,4 @@
-import { ISelectOptions, IPopupAttributes } from '@/common/types';
+import { ISelectOptions, IPopupAttributes, IImportResponse } from '@/common/types';
 import { IUserTimeKeeping } from '@/modules/timekeeping/types';
 import i18n from '@/plugins/vue-i18n';
 import Papa from 'papaparse';
@@ -135,7 +135,7 @@ export async function showAlertMessageFunction(
     );
 }
 
-export function checkWeekend(date: string | Date): boolean {
+export function isWeekend(date: string | Date): boolean {
     const day = moment(date).day();
     return day === WeekDay.SATURDAY || day === WeekDay.SUNDAY;
 }
@@ -185,4 +185,28 @@ export function parseDatePickerRangeValues(
         ];
     }
     return null;
+}
+
+// parse error retrieved from api when import data
+export function parseImportErrors(
+    importErrors: Record<string, IImportResponse>,
+): Record<string, Record<string, string>> {
+    let errors = {};
+    // parse error for each attribute
+    Object.keys(importErrors).forEach((key) => {
+        if (!importErrors[key].isValid) {
+            let currentError = {};
+            importErrors[key].errors.forEach((error) => {
+                currentError = {
+                    ...currentError,
+                    [error.column]: error.errorMessage,
+                };
+            });
+            errors = {
+                ...errors,
+                [key]: currentError,
+            };
+        }
+    });
+    return errors;
 }

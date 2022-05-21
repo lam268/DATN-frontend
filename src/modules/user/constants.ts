@@ -67,20 +67,6 @@ export const StatusOptions = [
         value: UserStatus.INACTIVE,
     },
 ];
-export const GenderOptions = [
-    {
-        label: 'user.list.filterForm.gender.male',
-        value: UserGender.MALE,
-    },
-    {
-        label: 'user.list.filterForm.gender.female',
-        value: UserGender.FEMALE,
-    },
-    {
-        label: 'user.list.filterForm.gender.other',
-        value: UserGender.OTHER,
-    },
-];
 
 export const SortOptions = [
     {
@@ -207,3 +193,27 @@ export const userSchema = yup.object({
         .nullable()
         .required(),
 });
+
+export const UserGenderSettings = [
+    {
+        code: UserGender.MALE,
+        value: {
+            vi: 'Nam',
+            en: 'Male',
+        },
+    },
+    {
+        code: UserGender.FEMALE,
+        value: {
+            vi: 'Nữ',
+            en: 'Female',
+        },
+    },
+    {
+        code: UserGender.OTHER,
+        value: {
+            vi: 'Khác',
+            en: 'Other',
+        },
+    },
+];

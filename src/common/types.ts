@@ -52,6 +52,13 @@ export interface ISelectOptions {
     value: string | number;
 }
 
+export interface IRowSpan {
+    row: any;
+    column: any;
+    rowIndex: number;
+    columnIndex: number;
+}
+
 export interface IQueryString {
     page?: number | null;
     limit?: number | null;

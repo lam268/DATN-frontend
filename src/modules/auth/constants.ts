@@ -11,18 +11,3 @@ export enum UserGender {
 export const GenderArray = ['male', 'female', 'other'];
 
 export const PositionArray = ['developer', 'tester', 'admin', 'accounting'];
-
-export const GenderOptions = [
-    {
-        label: 'auth.profile.gender.male',
-        value: UserGender.MALE,
-    },
-    {
-        label: 'auth.profile.gender.female',
-        value: UserGender.FEMALE,
-    },
-    {
-        label: 'auth.profile.gender.other',
-        value: UserGender.OTHER,
-    },
-];

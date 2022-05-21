@@ -5,6 +5,7 @@
         @open="form.openPopup"
         @closed="onClosedPopup"
         custom-class="holiday-form-popup"
+        destroy-on-close
     >
         <template #title>
             <h3 class="text-left">

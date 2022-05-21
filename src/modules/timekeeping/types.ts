@@ -15,9 +15,11 @@ export interface ITimekeeping {
     id: number | null;
     checkIn: string | null;
     checkOut: string | null;
-    date: string;
+    scanAt: string;
     requestAbsences: IRequestAbsence[];
     hasEnoughPaidLeaveHours?: boolean;
+    authorizedLeaveHours: number;
+    workingHours: number;
 }
 
 export interface IUserTimeKeeping {
@@ -33,8 +35,8 @@ export interface IUserTimeKeeping {
 
 export interface ITimeKeepingFilter {
     keyword?: string | null;
-    selectedWeek: string;
-    selectedMonth: string;
+    selectedWeek?: string;
+    selectedMonth?: string;
 }
 
 export interface ICellColumn {

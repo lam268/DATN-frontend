@@ -26,9 +26,6 @@ export default {
         gender: {
             label: 'Giới tính',
             placeholder: 'Chọn giới tính',
-            male: 'Nam',
-            female: 'Nữ',
-            other: 'Khác',
         },
         position: {
             label: 'Vị trí',

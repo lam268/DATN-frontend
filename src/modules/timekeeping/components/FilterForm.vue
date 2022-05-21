@@ -101,7 +101,7 @@ export default class FilterForm extends mixins(TimeKeepingMixins) {
     async handleSearch(): Promise<void> {
         timeKeepingModule.timeKeepingFilter.keyword =
             timeKeepingModule.timeKeepingFilter.keyword?.trim();
-        const { keyword, selectedMonth, selectedWeek } = this.form;
+        const { keyword, selectedMonth = '', selectedWeek = '' } = this.form;
 
         let startDate = null;
         let endDate = null;
@@ -142,7 +142,10 @@ export default class FilterForm extends mixins(TimeKeepingMixins) {
         const loading = ElLoading.service({
             target: '.content',
         });
-        await timeKeepingModule.getTimeKeepingList();
+        await Promise.all([
+            timeKeepingModule.getTimeKeepingList(),
+            timeKeepingModule.getHolidayList(),
+        ]);
         loading.close();
     }
 }

@@ -26,9 +26,16 @@
 import { PermissionResources, PermissionActions } from '@/modules/role/constants';
 import { checkUserHasPermission } from '@/utils/helper';
 import { Prop, Vue } from 'vue-property-decorator';
+import { contractTypeModule } from '../store/contractType.store';
 
 export default class SettingHeader extends Vue {
     @Prop({ default: '' }) readonly pageTitle!: string;
+
+    get isCanUpdate(): boolean {
+        return checkUserHasPermission(contractTypeModule.userPermissions, [
+            `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
+        ]);
+    }
 
     handleBtnReset(): void {
         this.$emit('reset');

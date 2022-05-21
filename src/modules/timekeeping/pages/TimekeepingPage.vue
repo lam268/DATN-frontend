@@ -171,8 +171,14 @@ export default class TimekeepingPage extends mixins(UtilMixins) {
     }
 
     async onClickDownloadTimeKeeping(): Promise<void> {
-        const startDate = moment().startOf('month').utc().fmFullTimeString();
-        const endDate = moment().endOf('month').utc().fmFullTimeString();
+        const startDate = moment(timeKeepingModule.selectedDate)
+            .startOf('month')
+            .utc()
+            .fmFullTimeString();
+        const endDate = moment(timeKeepingModule.selectedDate)
+            .endOf('month')
+            .utc()
+            .fmFullTimeString();
         const loading = ElLoading.service({ target: '.main' });
         const response = await timeKeepingApiService.download({
             startDate,

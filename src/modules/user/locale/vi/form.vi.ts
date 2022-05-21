@@ -139,6 +139,7 @@ export default {
             maxLength: `Nơi cấp căn cước công dân phải có ít hơn hoặc bằng ${INPUT_TEXT_MAX_LENGTH} kí tự`,
         },
         bank: {
+            invalid: 'Ngân hàng không hợp lệ',
             required: 'Ngân hàng là trường bắt buộc',
             maxLength: `Ngân hàng phải có ít hơn hoặc bằng ${INPUT_TEXT_MAX_LENGTH} kí tự`,
         },
@@ -177,7 +178,7 @@ export default {
             required: 'Căn cước công dân là trường bắt buộc',
             uniqueError: 'Căn cước công dân phải là duy nhất',
             maxLength: `Căn cước công dân phải có ít hơn hoặc bằng ${MAX_CITIZEN_ID_LENGTH} kí tự`,
-            mimLength: `Căn cước công dân phải có ít hơn hoặc bằng ${MIN_CITIZEN_ID_LENGTH} kí tự`,
+            minLength: `Căn cước công dân phải có ít hơn hoặc bằng ${MIN_CITIZEN_ID_LENGTH} kí tự`,
             invalid: 'Căn cước công dân không đúng định dạng',
         },
         socialInsurance: {

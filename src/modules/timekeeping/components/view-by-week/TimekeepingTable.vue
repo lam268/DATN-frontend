@@ -40,6 +40,7 @@
                             class="box-item"
                             effect="dark"
                             :content="generateTooltip(scope.row?.timekeepings?.[key])"
+                            v-if="shouldDisplayTooltip(scope.row?.timekeepings?.[key])"
                             raw-content
                             show-after="100"
                         >

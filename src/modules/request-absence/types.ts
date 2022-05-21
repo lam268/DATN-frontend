@@ -3,6 +3,8 @@ import { IAvatar } from '../user/types';
 import { RequestAbsenceStatus } from './contants';
 
 export interface IRequestAbsence {
+    userId: number;
+    status: RequestAbsenceStatus;
     startAt?: string | null;
     endAt?: string | null;
     createdAt?: string;

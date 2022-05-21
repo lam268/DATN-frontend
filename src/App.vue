@@ -10,8 +10,6 @@ import { appModule } from './store/app';
 import { Watch } from 'vue-property-decorator';
 import throttle from 'lodash/throttle';
 import { networkErrNotitfication } from '@/utils/commonFunction';
-import { SupportLanguage } from './common/constants';
-import en from '@/plugins/element-ui/lang/en';
 import vi from '@/plugins/element-ui/lang/vi';
 
 @Options({
@@ -29,10 +27,6 @@ export default class App extends Vue {
     }
 
     get locale(): Record<string, unknown> {
-        const i18nLocale = appModule.selectedLanguage;
-        if (i18nLocale === SupportLanguage.EN) {
-            return en;
-        }
         return vi;
     }
 

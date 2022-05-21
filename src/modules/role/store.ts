@@ -10,6 +10,7 @@ import { IBodyResponse, IGetListResponse } from '@/common/types';
 @Module({ dynamic: true, namespaced: true, store, name: 'Role' })
 class Role extends VuexModule {
     roles: IRole[] = [];
+    isScrollToTopOfPermissionList = true;
 
     initRole = {
         id: NaN,
@@ -68,6 +69,13 @@ class Role extends VuexModule {
             this.setPermissionList([]);
         }
     }
+
+    @Action
+    triggerScrollToTopOfPermissionList() {
+        this.MUTATE_IS_SCROLL_TO_TOP_OF_PERMISSION_LIST(
+            !this.isScrollToTopOfPermissionList,
+        );
+    }
     // MUTATIONS
 
     @Mutation
@@ -83,6 +91,11 @@ class Role extends VuexModule {
     @Mutation
     MUTATE_SET_PERMISSION_LIST(value: IPermission[]) {
         this.permissionList = value;
+    }
+
+    @Mutation
+    MUTATE_IS_SCROLL_TO_TOP_OF_PERMISSION_LIST(value: boolean) {
+        this.isScrollToTopOfPermissionList = value;
     }
 }
 

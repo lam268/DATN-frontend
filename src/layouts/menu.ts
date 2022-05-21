@@ -4,10 +4,6 @@ import {
     User as UserIcon,
     House as HouseIcon,
     Clock as ClockIcon,
-    Calendar as CalenderIcon,
-    Monitor as MonitorIcon,
-    Service as ServiceIcon,
-    Printer as PrinterIcon,
     Key as KeyIcon,
     Setting as SettingIcon,
     QuestionFilled as QuestionIcon,
@@ -60,19 +56,6 @@ const userMenu: ISidebar = {
                 `${PermissionResources.CONTRACT}_${PermissionActions.DELETE}`,
             ],
         },
-        {
-            name: 'common.app.menu.user.teamManagement',
-            to: '/team',
-            class: '',
-            active: false,
-            pageName: PageName.TEAM_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.TEAM}_${PermissionActions.READ}`,
-                `${PermissionResources.TEAM}_${PermissionActions.CREATE}`,
-                `${PermissionResources.TEAM}_${PermissionActions.UPDATE}`,
-                `${PermissionResources.TEAM}_${PermissionActions.DELETE}`,
-            ],
-        },
     ],
 };
 const timekeepingMenu: ISidebar = {
@@ -118,94 +101,6 @@ const timekeepingMenu: ISidebar = {
     ],
 };
 
-const assetMenu: ISidebar = {
-    iconComponent: MonitorIcon,
-    name: 'common.app.menu.asset.title',
-    class: '',
-    active: false,
-    subdrop: false,
-    hasNotify: false,
-    childs: [
-        {
-            name: 'common.app.menu.asset.assetManagement',
-            to: '/asset',
-            class: '',
-            active: false,
-            pageName: PageName.ASSET_LIST_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.ASSET}_${PermissionActions.READ}`,
-                `${PermissionResources.ASSET}_${PermissionActions.CREATE}`,
-                `${PermissionResources.ASSET}_${PermissionActions.UPDATE}`,
-                `${PermissionResources.ASSET}_${PermissionActions.DELETE}`,
-            ],
-        },
-        {
-            name: 'common.app.menu.asset.requestAssetManagement',
-            to: '/request-asset',
-            class: '',
-            active: false,
-            pageName: PageName.REQUEST_ASSET_LIST_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.REQUEST_ASSET}_${PermissionActions.READ}`,
-                `${PermissionResources.REQUEST_ASSET}_${PermissionActions.CREATE}`,
-                `${PermissionResources.REQUEST_ASSET}_${PermissionActions.UPDATE}`,
-                `${PermissionResources.REQUEST_ASSET}_${PermissionActions.DELETE}`,
-            ],
-        },
-    ],
-};
-
-const eventMenu: ISidebar = {
-    iconComponent: CalenderIcon,
-    name: 'common.app.menu.event.title',
-    class: '',
-    active: false,
-    subdrop: false,
-    hasNotify: false,
-    to: '/event',
-    pageName: PageName.EVENT_PAGE,
-    requiredPermissions: [
-        `${PermissionResources.EVENT}_${PermissionActions.READ}`,
-        `${PermissionResources.EVENT}_${PermissionActions.CREATE}`,
-        `${PermissionResources.EVENT}_${PermissionActions.UPDATE}`,
-        `${PermissionResources.EVENT}_${PermissionActions.DELETE}`,
-    ],
-};
-
-const recruitmentMenu: ISidebar = {
-    iconComponent: ServiceIcon,
-    name: 'common.app.menu.recruitment.title',
-    class: '',
-    active: false,
-    subdrop: false,
-    hasNotify: false,
-    to: '/recruitment',
-    pageName: PageName.CANDIDATE_LIST_PAGE,
-    requiredPermissions: [
-        `${PermissionResources.RECRUITMENT}_${PermissionActions.READ}`,
-        `${PermissionResources.RECRUITMENT}_${PermissionActions.CREATE}`,
-        `${PermissionResources.RECRUITMENT}_${PermissionActions.UPDATE}`,
-        `${PermissionResources.RECRUITMENT}_${PermissionActions.DELETE}`,
-    ],
-};
-
-const billingMenu: ISidebar = {
-    iconComponent: PrinterIcon,
-    name: 'common.app.menu.billing.title',
-    class: '',
-    active: false,
-    subdrop: false,
-    hasNotify: false,
-    to: '/billing',
-    pageName: PageName.BILLING_PAGE,
-    requiredPermissions: [
-        `${PermissionResources.BILLING}_${PermissionActions.READ}`,
-        `${PermissionResources.BILLING}_${PermissionActions.CREATE}`,
-        `${PermissionResources.BILLING}_${PermissionActions.UPDATE}`,
-        `${PermissionResources.BILLING}_${PermissionActions.DELETE}`,
-    ],
-};
-
 const roleMenu: ISidebar = {
     iconComponent: KeyIcon,
     name: 'common.app.menu.role.title',
@@ -237,28 +132,6 @@ const settings: ISidebar = {
             class: '',
             active: false,
             pageName: PageName.SETTINGS_POSITION_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.SETTING}_${PermissionActions.READ}`,
-                `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
-            ],
-        },
-        {
-            name: 'common.app.menu.settings.appliedPosition',
-            to: '/setting/applied-position',
-            class: '',
-            active: false,
-            pageName: PageName.SETTINGS_APPLIED_POSITION_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.SETTING}_${PermissionActions.READ}`,
-                `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
-            ],
-        },
-        {
-            name: 'common.app.menu.settings.category',
-            to: '/setting/category',
-            class: '',
-            active: false,
-            pageName: PageName.SETTINGS_ASSET_CATEGORY_PAGE,
             requiredPermissions: [
                 `${PermissionResources.SETTING}_${PermissionActions.READ}`,
                 `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
@@ -307,15 +180,4 @@ const about: ISidebar = {
     pageName: PageName.ABOUT_PAGE,
 };
 
-export const sidebars = [
-    dashboard,
-    userMenu,
-    timekeepingMenu,
-    assetMenu,
-    eventMenu,
-    recruitmentMenu,
-    billingMenu,
-    roleMenu,
-    settings,
-    about,
-];
+export const sidebars = [dashboard, userMenu, timekeepingMenu, roleMenu, settings, about];

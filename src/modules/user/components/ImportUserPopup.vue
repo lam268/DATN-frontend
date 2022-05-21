@@ -42,7 +42,7 @@ export default class ImportUserPopup extends mixins(UtilMixins) {
                 )
             ) {
                 this.importErrorMessage = this.$t(
-                    'common.common.uploadFile.rules.invalidType',
+                    'common.common.uploadFile.rules.invalidType.excel',
                 );
                 return false;
             }
