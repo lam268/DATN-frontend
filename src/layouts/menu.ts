@@ -168,4 +168,4 @@ const settings: ISidebar = {
     ],
 };
 
-export const sidebars = [dashboard, userMenu, timekeepingMenu, roleMenu, settings];
+export const sidebars = [dashboard, userMenu, timekeepingMenu, settings, roleMenu];
