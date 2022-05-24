@@ -114,7 +114,7 @@ export default class Sort extends Vue {
     }
 }
 .toolbox-title {
-    font-size: 13px;
+    font-size: 14px;
     color: #7d7d7d;
     text-transform: uppercase;
 }

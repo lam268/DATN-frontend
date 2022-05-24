@@ -1,6 +1,5 @@
 // layouts
 export const MAIN_LAYOUT_NAME = 'MainLayout';
-export const GUEST_LAYOUT_NAME = 'GuestLayout';
 export const LOGIN_LAYOUT_NAME = 'LoginLayout';
 export const ERROR_LAYOUT_NAME = 'ErrorLayout';
 
@@ -182,15 +181,9 @@ export enum ModuleName {
     USER = 'user',
     CONTRACT = 'contract',
     TIMEKEEPING = 'timekeeping',
-    ASSET = 'asset',
-    EVENT = 'event',
-    RECRUITMENT = 'recruitment',
-    BILLING = 'billing',
     ROLE = 'role',
-    REQUEST_ASSET = 'requestAsset',
     REQUEST_ABSENCE = 'requestAbsence',
     DASHBOARD_PAGE = 'dashboard',
-    TEAM = 'team',
     SETTING = 'setting',
 }
 

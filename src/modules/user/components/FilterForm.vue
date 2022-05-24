@@ -127,11 +127,12 @@ export default class FilterForm extends mixins(UtilMixins) {
 .filter-title {
     font-weight: bold;
     margin-bottom: 8px;
+    font-size: 0.925rem;
 }
 .form-group {
     margin-bottom: 10px !important;
 }
 :deep(label) {
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>

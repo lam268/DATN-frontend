@@ -252,7 +252,7 @@ export default class Permission extends Vue {
 <style lang="scss" scoped>
 .error-text {
     color: #f5325c;
-    font-size: 13px;
+    font-size: 14px;
 }
 .block {
     background: transparent !important;

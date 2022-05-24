@@ -190,6 +190,7 @@ export default class ContractFilterForm extends mixins(UtilMixins) {
 .filter-title {
     font-weight: bold;
     margin-bottom: 8px;
+    font-size: 0.925rem;
 }
 .el-input-group {
     margin-top: 30px;
@@ -214,6 +215,6 @@ export default class ContractFilterForm extends mixins(UtilMixins) {
     margin-bottom: 10px !important;
 }
 :deep(label) {
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>

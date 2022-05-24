@@ -302,7 +302,7 @@ export default class UserCard extends Vue {
 
 .box-popper-menu {
     .box-menu {
-        font-size: 13px;
+        font-size: 14px;
         cursor: pointer;
         margin: 0 -13px;
         div {

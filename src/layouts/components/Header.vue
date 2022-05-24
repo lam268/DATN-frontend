@@ -3,13 +3,13 @@
         <!--Logo-->
         <div class="header-left">
             <router-link to="/" class="logo">
-                <img src="@/assets/images/logo-symbol.png" height="40" alt="" />
+                <img src="@/assets/images/logo-symbol.svg" height="40" alt="" />
             </router-link>
         </div>
         <!--/Logo-->
         <!-- Header Title -->
         <div class="page-title-box">
-            <h3>Tokyo Tech Lab</h3>
+            <h3>Hehe Company</h3>
         </div>
         <!-- /Header Title -->
         <a class="button-menu" @click.prevent="showDrawer">

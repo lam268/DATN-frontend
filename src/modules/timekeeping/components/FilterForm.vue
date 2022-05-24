@@ -153,12 +153,13 @@ export default class FilterForm extends mixins(TimeKeepingMixins) {
 <style scoped>
 .filter-title-time {
     font-weight: bold;
+    font-size: 0.925rem;
     margin-bottom: 8px;
 }
 :deep(.form-group) {
     margin-bottom: 0 !important;
 }
 :deep(label) {
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>

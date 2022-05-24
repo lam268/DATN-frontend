@@ -93,6 +93,7 @@ export default class InputText extends Vue {
 }
 :deep(.el-input__inner) {
     text-align: left !important;
+    font-size: 16px !important;
 }
 
 /* Firefox */

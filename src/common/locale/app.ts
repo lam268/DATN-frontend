@@ -11,27 +11,12 @@ export default {
             title: 'Quản trị nhân sự',
             userManagement: 'Quản lý người dùng',
             contractManagement: 'Quản lý hợp đồng',
-            teamManagement: 'Quản lý nhóm',
-        },
-        asset: {
-            title: 'Quản lý tài sản',
-            assetManagement: 'Quản lý tài sản',
-            requestAssetManagement: 'Quản lý yêu cầu tài sản',
         },
         timekeeping: {
             title: 'Quản lý chấm công',
             timekeeping: 'Quản lý chấm công',
             requestAbsence: 'Quản lý nghỉ phép',
             generalSettings: 'Cài đặt chung',
-        },
-        event: {
-            title: 'Quản lý sự kiện',
-        },
-        recruitment: {
-            title: 'Quản lý tuyển dụng',
-        },
-        billing: {
-            title: 'Quản lý hóa đơn',
         },
         role: {
             subtitle: 'Vai trò',
@@ -43,8 +28,6 @@ export default {
         settings: {
             title: 'Cài đặt',
             position: 'Chức danh',
-            appliedPosition: 'Vị trí ứng tuyển',
-            category: 'Danh mục tài sản',
             holiday: 'Ngày nghỉ lễ',
             contractType: 'Loại hợp đồng',
             resetPaidLeaveDays: 'Lịch hủy ngày phép năm',
@@ -57,11 +40,6 @@ export default {
         myProfile: 'Hồ sơ của tôi',
         settings: 'Cài đặt',
         logout: 'Đăng xuất',
-    },
-    menuLanguage: {
-        title: 'Tiếng Việt',
-        en: 'Tiếng Anh',
-        vi: 'Tiếng Việt',
     },
     buttons: {
         create: 'Tạo',

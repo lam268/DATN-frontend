@@ -8,7 +8,7 @@
                         class="m-auto d-block"
                         width="150"
                         height="80"
-                        src="@/assets/images/logo.png"
+                        src="@/assets/images/logo-symbol.svg"
                     />
 
                     <el-button class="v-btn--text" @click="getGoogleLoginLink">

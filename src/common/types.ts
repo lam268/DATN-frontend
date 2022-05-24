@@ -7,7 +7,6 @@ import {
 import { Vue } from 'vue-class-component';
 import { Component } from 'vue';
 import { UserStatus } from '@/modules/user/constants';
-import { IAsset } from '@/modules/asset/types';
 
 // Interfaces for general response of all apis
 export interface IBodyResponse<T = Record<string, any>> extends AxiosResponse {
@@ -236,10 +235,4 @@ export interface IImportResponse {
 
 export interface IBulkImportResponse {
     results: Record<string, IImportResponse>;
-}
-
-export interface IAssetsGroupByAssignee {
-    assigneeId: number;
-    fullName: string;
-    assets: IAsset[];
 }

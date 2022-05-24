@@ -76,6 +76,7 @@ export default class FilterForm extends Vue {
 .filter-title {
     font-weight: bold;
     margin-bottom: 8px;
+    font-size: 0.925rem;
 }
 
 .btn-search {
@@ -85,6 +86,6 @@ export default class FilterForm extends Vue {
     margin-bottom: 0 !important;
 }
 :deep(label) {
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>

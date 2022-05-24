@@ -116,13 +116,14 @@ export default class FilterForm extends Vue {
 .filter-title {
     font-weight: bold;
     margin-bottom: 8px;
+    font-size: 0.925rem;
 }
 
 .btn-search {
     width: 160px;
 }
 :deep(label) {
-    font-size: 13px;
+    font-size: 14px;
 }
 .form-group {
     margin-bottom: 10px !important;
