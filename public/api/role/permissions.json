@@ -1,7 +1,0 @@
-[{
-  "model": "user",
-  "actions": ["read", "create", "update", "delete", "change status"]
-}, {
-  "model": "role",
-  "actions": ["read", "update"]
-}]

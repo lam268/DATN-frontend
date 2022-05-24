@@ -29,41 +29,6 @@ export function vietnameseStringInclude(str: string, keyword: string): boolean {
     );
 }
 
-const padLeft = (num: number): string => {
-    if (num < 10) {
-        return ('0' + num) as string;
-    }
-    return num as unknown as string;
-};
-
-export const formatJsDateToSqlDateTime = (dateTime: string | null = null): string => {
-    const utcDate = dateTime ? new Date(dateTime as string) : new Date();
-    return `${utcDate.getUTCFullYear()}-${padLeft(utcDate.getUTCMonth() + 1)}-${padLeft(
-        utcDate.getUTCDate(),
-    )} ${padLeft(utcDate.getUTCHours())}:${padLeft(utcDate.getUTCMinutes())}:${padLeft(
-        utcDate.getUTCSeconds(),
-    )}`;
-};
-
-export const formatJsDateToSqlDate = (date: Date): string => {
-    return `${date.getFullYear()}-${padLeft(date.getMonth() + 1)}-${padLeft(
-        date.getDate(),
-    )}`;
-};
-
-export const getLocalDateTime = (date: string): string => {
-    const offset = new Date().getTimezoneOffset();
-    const time = new Date(date).getTime() - offset * 60 * 1000;
-    const dateRs = new Date(time);
-    return `${dateRs.getFullYear()}-${
-        dateRs.getMonth() + 1
-    }-${dateRs.getDate()} ${dateRs.getHours()}:${dateRs.getMinutes()}:${dateRs.getSeconds()}`;
-};
-
-export const deepClone = <T>(source: T): T => {
-    return JSON.parse(JSON.stringify(source));
-};
-
 export const networkErrNotitfication = (): void => {
     showErrorNotificationFunction(i18n.global.t('common.common.errors.network'));
 };

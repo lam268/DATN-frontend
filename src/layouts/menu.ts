@@ -6,7 +6,6 @@ import {
     Clock as ClockIcon,
     Key as KeyIcon,
     Setting as SettingIcon,
-    QuestionFilled as QuestionIcon,
 } from '@element-plus/icons-vue';
 import { PermissionActions, PermissionResources } from '@/modules/role/constants';
 // start dashboardGroup
@@ -169,15 +168,4 @@ const settings: ISidebar = {
     ],
 };
 
-const about: ISidebar = {
-    iconComponent: QuestionIcon,
-    name: 'common.app.menu.about.title',
-    class: '',
-    active: false,
-    subdrop: false,
-    hasNotify: false,
-    to: '/about',
-    pageName: PageName.ABOUT_PAGE,
-};
-
-export const sidebars = [dashboard, userMenu, timekeepingMenu, roleMenu, settings, about];
+export const sidebars = [dashboard, userMenu, timekeepingMenu, roleMenu, settings];

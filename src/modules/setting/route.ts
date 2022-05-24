@@ -3,7 +3,6 @@ import SettingUserPositionPage from './pages/SettingUserPositionPage.vue';
 import SettingHolidayPage from './pages/SettingHoliday.vue';
 import ContractTypePage from './pages/ContractTypePage.vue';
 import SettingResetPaidLeaveDaysPage from './pages/ResetPaidLeaveDaysPage.vue';
-import AboutPage from './pages/AboutPage.vue';
 import { PageName } from '@/common/constants';
 import MainLayout from '@/layouts/MainLayout.vue';
 export default [
@@ -45,21 +44,6 @@ export default [
                 meta: {
                     requiresAuth: true,
                     name: PageName.SETTINGS_CONTRACT_TYPE_PAGE,
-                },
-            },
-        ],
-    },
-    {
-        path: '/about',
-        component: MainLayout,
-        children: [
-            {
-                path: '',
-                name: PageName.ABOUT_PAGE,
-                component: AboutPage,
-                meta: {
-                    requiresAuth: true,
-                    name: PageName.ABOUT_PAGE,
                 },
             },
         ],
