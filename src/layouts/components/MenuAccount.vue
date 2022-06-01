@@ -15,9 +15,6 @@
                     <el-dropdown-item @click="onClickProfileButton">
                         {{ $t('common.app.menuAccount.myProfile') }}
                     </el-dropdown-item>
-                    <el-dropdown-item @click="onClickSettings">
-                        {{ $t('common.app.menuAccount.settings') }}
-                    </el-dropdown-item>
                     <el-dropdown-item @click="logout">
                         {{ $t('common.app.menuAccount.logout') }}
                     </el-dropdown-item>
@@ -72,12 +69,6 @@ export default class MenuAccount extends mixins(UtilMixins) {
     onClickProfileButton(): void {
         router.push({
             name: PageName.PROFILE_PAGE,
-        });
-    }
-
-    onClickSettings(): void {
-        router.push({
-            name: PageName.SETTINGS_POSITION_PAGE,
         });
     }
 

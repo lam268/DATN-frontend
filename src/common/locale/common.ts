@@ -20,6 +20,11 @@ export default {
         500: 'Có lỗi xảy ra, vui lòng thử lại sau',
         network: 'Mất kết nối, đang thử kết nối lại',
     },
+    form: {
+        button: {
+            clickHere: 'Click vào đây',
+        },
+    },
     fields: {
         userId: 'người dùng',
         fullName: 'họ tên',
@@ -82,7 +87,6 @@ export default {
         socialInsurance: 'bảo hiểm xã hội',
         taxCode: 'mã số thuế',
         shift: 'ca',
-        billingName: 'tên hoá đơn',
         template: 'mẫu email',
         subject: 'tiêu đề',
         startWorkingDate: 'ngày bắt đầu làm việc',

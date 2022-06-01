@@ -116,7 +116,6 @@ export default class ContractTypeTable extends Vue {
     height: 1em;
     width: 1em;
 }
-
 .button-group {
     display: flex;
     justify-content: space-around;

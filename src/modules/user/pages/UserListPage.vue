@@ -59,7 +59,6 @@
         <!-- Popup upload -->
         <ImportUserPopup />
         <ImportUserResultPopup />
-        <ImportUserFingerPopup />
     </div>
 </template>
 
@@ -76,7 +75,6 @@ import { DEFAULT_FIRST_PAGE, DEFAULT_SIZE_PER_PAGE } from '@/common/constants';
 import { mixins } from 'vue-property-decorator';
 import { PermissionActions, PermissionResources } from '@/modules/role/constants';
 import ImportUserPopup from '../components/ImportUserPopup.vue';
-import ImportUserFingerPopup from '../components/ImportUserFingerPopup.vue';
 import { checkUserHasPermission } from '@/utils/helper';
 import { SettingKey } from '@/modules/setting/constant';
 import { generalSettingApiService } from '@/modules/setting/services/settingService';
@@ -89,7 +87,6 @@ import ImportUserResultPopup from '../components/ImportUserResultPopup.vue';
         UserFormPopup,
         Sort,
         ImportUserPopup,
-        ImportUserFingerPopup,
         ImportUserResultPopup,
     },
 })

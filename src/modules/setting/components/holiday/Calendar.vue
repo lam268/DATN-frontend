@@ -251,11 +251,17 @@ export default class Calendar extends mixins(SettingMixins) {
     overflow: hidden;
 }
 
+:deep(.fc-scrollgrid-sync-table) {
+    height: 600px !important;
+}
+
 .date-picker {
     right: 20px;
     position: absolute;
 }
-
+:deep(.fc-view-harness) {
+    height: 631px !important;
+}
 :deep(.fc-scroller-liquid-absolute) {
     overflow: hidden !important;
 }

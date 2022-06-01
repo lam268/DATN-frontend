@@ -52,7 +52,7 @@
                         :href="scope.row.url"
                         target="_blank"
                         v-if="scope.row.url"
-                        >{{ $t('billing.form.button.clickHere') }}</a
+                        >{{ $t('common.common.form.button.clickHere') }}</a
                     >
                 </template>
             </el-table-column>

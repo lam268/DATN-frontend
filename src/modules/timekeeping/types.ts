@@ -75,7 +75,6 @@ export interface ITimeKeepingForm {
 export interface IGetTimeKeeping {
     id: number;
     userId: number;
-    fingerId: string;
     checkIn: string;
     checkOut: string;
     scanAt: string;

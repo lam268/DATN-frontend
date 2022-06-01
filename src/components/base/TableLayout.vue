@@ -10,7 +10,7 @@
             :stripe="stripe"
             :cell-style="cellStyle"
             @cell-click="handleCellClick"
-            :max-height="400"
+            :max-height="maxHeight"
             fit
         >
             <slot name="table-columns" />
