@@ -45,7 +45,7 @@ export default {
         endDate: 'ngày kết thúc',
         url: 'đường dẫn',
         name: 'tên',
-        description: 'mô tả',
+        description: 'Mô tả',
         userInfo: 'thông tin người dùng',
         startTime: 'thời gian bắt đầu',
         endTime: 'thời gian kết thúc',

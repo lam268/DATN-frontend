@@ -158,13 +158,13 @@ const settings: ISidebar = {
                 `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
             ],
         },
-        {
-            name: 'common.app.menu.settings.resetPaidLeaveDays',
-            to: '/setting/reset-paid-leave-days',
-            class: '',
-            active: false,
-            pageName: PageName.SETTINGS_RESET_PAID_LEAVE_DAYS,
-        },
+        // {
+        //     name: 'common.app.menu.settings.resetPaidLeaveDays',
+        //     to: '/setting/reset-paid-leave-days',
+        //     class: '',
+        //     active: false,
+        //     pageName: PageName.SETTINGS_RESET_PAID_LEAVE_DAYS,
+        // },
     ],
 };
 

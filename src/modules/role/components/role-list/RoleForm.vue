@@ -28,7 +28,7 @@
                 </div>
                 <div class="row form-group d-flex">
                     <BaseInputTextarea
-                        :label="$t('team.form.desc')"
+                        :label="$t('common.common.fields.description')"
                         v-model:value="form.description"
                         :isHorizontal="true"
                         :placeholder="$t('role.list.createPage.placeholder.description')"
