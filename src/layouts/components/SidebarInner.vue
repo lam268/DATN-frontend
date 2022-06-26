@@ -1,66 +1,66 @@
 <template>
-    <el-drawer
-        :model-value="isShowMobileSidebar"
-        :close-on-press-escape="false"
-        :before-close="toggleMobileSidebar"
-        :with-header="false"
-        direction="ltr"
-        :size="270"
+    <el-menu
+        :default-openeds="activeHighlightMenu"
+        :collapse="isCollapse"
+        :unique-opened="true"
+        :collapse-transition="false"
     >
-        <el-menu>
-            <template
-                :key="['m', sidebarIndex].join('-')"
-                v-for="(sidebar, sidebarIndex) in sidebars"
+        <template
+            :key="['d', sidebarIndex].join('-')"
+            v-for="(sidebar, sidebarIndex) in sidebars"
+        >
+            <router-link
+                :to="sidebar.to"
+                v-if="!sidebar.childs && hasPermission(sidebar)"
             >
-                <router-link
-                    :to="sidebar.to"
-                    v-if="!sidebar.childs && hasPermission(sidebar)"
+                <el-menu-item
+                    :index="['d', sidebarIndex, Date.now()].join('-')"
+                    :class="{
+                        'active-menu': isActiveMenu(sidebar),
+                        'collapsed-menu-item': isCollapse,
+                    }"
                 >
-                    <el-menu-item
-                        :index="['m', sidebarIndex, Date.now()].join('-')"
-                        :class="{
-                            'active-menu': isActiveMenu(sidebar),
-                        }"
-                    >
-                        <template #title>
-                            <component :is="sidebar.iconComponent" class="module-icon" />
-                            <span>{{ $t(sidebar.name) }}</span>
-                        </template>
-                    </el-menu-item>
-                </router-link>
-                <el-sub-menu
-                    v-if="sidebar.childs && hasPermission(sidebar)"
-                    :index="['m', sidebarIndex].join('-')"
-                    :class="{ 'active-menu': isActiveParentMenu(sidebar) }"
-                >
+                    <component :is="sidebar.iconComponent" class="module-icon" />
                     <template #title>
-                        <component :is="sidebar.iconComponent" class="module-icon" />
                         <span>{{ $t(sidebar.name) }}</span>
                     </template>
-                    <el-menu-item-group>
-                        <router-link
-                            :to="item.to"
-                            :key="itemIndex"
-                            v-for="(item, itemIndex) in sidebar.childs"
+                </el-menu-item>
+            </router-link>
+            <el-sub-menu
+                v-if="sidebar.childs && hasPermission(sidebar)"
+                :index="['d', sidebarIndex].join('-')"
+                :class="{
+                    'active-menu': isActiveParentMenu(sidebar),
+                    'collapsed-menu-item': isCollapse,
+                }"
+            >
+                <template #title>
+                    <component :is="sidebar.iconComponent" class="module-icon" />
+                    <span>{{ $t(sidebar.name) }}</span>
+                </template>
+                <el-menu-item-group>
+                    <router-link
+                        :key="itemIndex"
+                        v-for="(item, itemIndex) in sidebar.childs"
+                        :to="item.to"
+                    >
+                        <el-menu-item
+                            :index="['d', sidebarIndex, itemIndex].join('-')"
+                            v-if="hasPermission(item)"
+                            :class="isActiveSubMenu(item)"
                         >
-                            <el-menu-item
-                                :index="['m', sidebarIndex, itemIndex].join('-')"
-                                :class="{ 'active-menu': isActiveMenu(item) }"
-                            >
-                                <component :is="item.iconComponent" class="module-icon" />
-                                <span>{{ $t(item.name) }}</span>
-                            </el-menu-item>
-                        </router-link>
-                    </el-menu-item-group>
-                </el-sub-menu>
-            </template>
-        </el-menu>
-    </el-drawer>
+                            <component :is="item.iconComponent" class="module-icon" />
+                            <span>{{ $t(item.name) }}</span>
+                        </el-menu-item>
+                    </router-link>
+                </el-menu-item-group>
+            </el-sub-menu>
+        </template>
+    </el-menu>
 </template>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { sidebars as initSidebar } from '../menu';
-import { appModule } from '@/store/app';
 import { ISidebar } from '@/common/types';
 import {
     ArrowLeft as ArrowLeftIcon,
@@ -78,6 +78,7 @@ import {
 } from '@element-plus/icons-vue';
 import { checkPermission } from '@/utils/commonFunction';
 import { authModule } from '@/modules/auth/store';
+import { Prop } from 'vue-property-decorator';
 
 @Options({
     components: {
@@ -95,17 +96,42 @@ import { authModule } from '@/modules/auth/store';
         ArrowRightIcon,
     },
 })
-export default class SideBarMobile extends Vue {
+export default class SidebarInner extends Vue {
+    @Prop({ default: false }) isCollapse!: boolean;
+
     get sidebars(): ISidebar[] {
         return initSidebar;
     }
 
-    get isShowMobileSidebar(): boolean {
-        return appModule.isShowMobileSidebar;
+    get activeHighlightMenu(): string[] {
+        const menuObj: Record<string, string[]> = {};
+        this.sidebars.forEach((item: ISidebar, index: number) => {
+            menuObj[index] = item.childs
+                ? item.childs.map((child: ISidebar) => child.pageName || '')
+                : [];
+        });
+        const path = this.$router.currentRoute?.value?.name as string;
+        const mainMenu: string[] = [];
+
+        Object.values(menuObj).forEach((itemSubMenu: string[], index: number) => {
+            if (itemSubMenu?.includes(path)) mainMenu.push(`d-${index}`);
+        });
+        return mainMenu;
+    }
+
+    toggleSidebar(): void {
+        this.isCollapse = !this.isCollapse;
+        this.$emit('toggleSidebar', this.isCollapse);
     }
 
     isActiveMenu(value: ISidebar): boolean {
         return value.to === `/${this.$route.path.split('/')[1]}`;
+    }
+
+    isActiveSubMenu(value: ISidebar): string {
+        const router = this.$router.currentRoute?.value?.name as string;
+        if (value.pageName === router) return 'active-menu';
+        else return '';
     }
 
     isActiveParentMenu(items: ISidebar): boolean | undefined {
@@ -275,6 +301,11 @@ export default class SideBarMobile extends Vue {
             }
         }
     }
+}
+:deep(.el-drawer__body) {
+    margin-top: 84px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .collapsed-menu-item {

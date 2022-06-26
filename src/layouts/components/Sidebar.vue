@@ -2,8 +2,7 @@
     <!-- <sidebar> -->
     <div class="sidebar" :class="isCollapse ? 'mini-sidebar' : ''">
         <div class="sidebar-inner">
-            <SidebarDesktop :isCollapse="isCollapse" />
-            <SidebarMobile />
+            <SidebarInner :isCollapse="isCollapse" />
         </div>
         <div class="sidebar-minimizer" :class="{ collapse: isCollapse }">
             <a class="toggle_btn" @click="toggleSidebar">
@@ -30,8 +29,7 @@ import {
     Setting as SettingIcon,
     QuestionFilled as QuestionIcon,
 } from '@element-plus/icons-vue';
-import SidebarDesktop from './SidebarDesktop.vue';
-import SidebarMobile from './SidebarMobile.vue';
+import SidebarInner from './SidebarInner.vue';
 
 @Options({
     components: {
@@ -47,12 +45,11 @@ import SidebarMobile from './SidebarMobile.vue';
         QuestionIcon,
         ArrowLeftIcon,
         ArrowRightIcon,
-        SidebarDesktop,
-        SidebarMobile,
+        SidebarInner,
     },
 })
 export default class SideBar extends Vue {
-    isCollapse = false;
+    isCollapse = true;
 
     toggleSidebar(): void {
         this.isCollapse = !this.isCollapse;

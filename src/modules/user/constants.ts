@@ -102,7 +102,7 @@ export const PositionOptions = [
     },
 ];
 
-export const USERS_SIZE_PER_PAGE = 8;
+export const USERS_SIZE_PER_PAGE = 4;
 
 export const PASSWORD_MIN_LENGTH = 8;
 

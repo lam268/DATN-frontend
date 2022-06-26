@@ -9,7 +9,7 @@
         <!--/Logo-->
         <!-- Header Title -->
         <div class="page-title-box">
-            <h3>Hehe Company</h3>
+            <h3>Unicorn Company</h3>
         </div>
         <!-- /Header Title -->
         <a class="button-menu" @click.prevent="showDrawer">
