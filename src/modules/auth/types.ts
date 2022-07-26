@@ -25,6 +25,11 @@ export interface IGoogleLoginLinkResponse {
     redirectUri: string;
 }
 
+export interface ILoginForm {
+    email: string;
+    password: string;
+}
+
 export interface IUserProfile {
     id: number | null;
     address: string | null;

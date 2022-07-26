@@ -10,7 +10,23 @@
                         height="80"
                         src="@/assets/images/logo-symbol.svg"
                     />
-
+                    <BaseInputText
+                        :label="$t('auth.login.login.email')"
+                        :isRequired="true"
+                        v-model:value="form.email"
+                        :placeholder="$t('auth.login.login.placeholder.email')"
+                        :error="translateYupError(form.errors.email)"
+                    />
+                    <BaseInputPassword
+                        :label="$t('auth.login.login.password')"
+                        :isRequired="true"
+                        v-model:value="form.password"
+                        :placeholder="$t('auth.login.login.placeholder.password')"
+                        :error="translateYupError(form.errors.password)"
+                    />
+                    <el-button type="primary" @click="form.onSubmit">
+                        {{ $t('auth.login.login.loginButton') }}
+                    </el-button>
                     <el-button class="v-btn--text" @click="getGoogleLoginLink">
                         <img
                             :alt="$t('auth.login.google.googleLoginText')"
@@ -25,15 +41,19 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { mixins, Options, setup } from 'vue-class-component';
 import { useRoute } from 'vue-router';
 import { IGoogleLoginLinkParams } from '../types';
 import { authModule } from '@auth/store';
 import { ElLoading } from 'element-plus';
+import { loginForm } from '../composition/loginForm';
+import { UtilMixins } from '@/mixins/utilMixins';
 
 @Options({})
-export default class LoginPage extends Vue {
+export default class LoginPage extends mixins(UtilMixins) {
     errorMessage = '';
+
+    form = setup(() => loginForm());
 
     async getGoogleLoginLink(): Promise<void> {
         const route = useRoute();
@@ -48,7 +68,6 @@ export default class LoginPage extends Vue {
         });
         await authModule.getGoogleLoginLink(params);
         loading.close();
-
         if (authModule?.googleLoginLink) {
             window.open(authModule.googleLoginLink, '_self');
         }
@@ -94,7 +113,7 @@ export default class LoginPage extends Vue {
 .login-inner {
     button {
         margin-top: 15px;
-        color: #212121;
+        width: 210px;
         text-transform: none;
         box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
             0px 1px 5px 0px rgba(0, 0, 0, 0.12) !important;
@@ -107,6 +126,11 @@ export default class LoginPage extends Vue {
             width: 20px;
             margin-right: 5px;
         }
+    }
+
+    .v-btn--text {
+        margin-left: 0px !important;
+        color: #212121;
     }
 }
 </style>

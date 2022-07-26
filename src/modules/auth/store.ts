@@ -7,6 +7,7 @@ import {
     IUserProfile,
     IGoogleLoginForm,
     IGoogleLoginLinkResponse,
+    ILoginForm,
 } from './types';
 import store from '@/store';
 import { useRouter } from 'vue-router';
@@ -65,6 +66,47 @@ class AuthModule extends VuexModule {
         const router = useRouter();
         try {
             const response = await authService.loginWithGoogle(data);
+            if (response.success) {
+                appService.setUser(response.data?.profile);
+                const token: ITokenOption = {
+                    accessToken: response.data?.accessToken?.token,
+                    refreshToken: response.data?.refreshToken.token,
+                    accessTokenExpiredAt: +response.data?.accessToken.expiresIn,
+                    refreshTokenExpiredAt: +response?.data?.refreshToken.expiresIn,
+                };
+                appService.setUserToken(token);
+                this.context.dispatch('setLoginUser', response.data?.profile, {
+                    root: true,
+                });
+                router.push({
+                    name: PageName.DASHBOARD_PAGE,
+                });
+            } else {
+                const result = await showAlertMessageFunction(
+                    i18n.global.t('auth.login.error.permission.message') as string,
+                    i18n.global.t('auth.login.error.permission.title') as string,
+                    {
+                        confirmButtonText: 'OK',
+                    },
+                );
+                if (result) {
+                    router.push({
+                        name: PageName.LOGIN_PAGE,
+                    });
+                }
+            }
+        } catch (error) {
+            router.push({
+                name: PageName.LOGIN_PAGE,
+            });
+        }
+    }
+
+    @Action
+    async loginWithEmail(data: ILoginForm) {
+        const router = useRouter();
+        try {
+            const response = await authService.login(data);
             if (response.success) {
                 appService.setUser(response.data?.profile);
                 const token: ITokenOption = {

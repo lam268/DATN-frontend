@@ -1,4 +1,9 @@
-import { IGoogleLoginLinkParams, IGoogleLoginForm, ILoginResponse } from '../types';
+import {
+    IGoogleLoginLinkParams,
+    IGoogleLoginForm,
+    ILoginResponse,
+    ILoginForm,
+} from '../types';
 import { IBodyResponse } from '@/common/types';
 import service from '@/plugins/axios';
 import { BaseService } from '@/utils/api';
@@ -18,6 +23,15 @@ class AuthApiService extends BaseService {
         data = this.beforeSave<IGoogleLoginForm>(data);
         return this.client.post<ILoginResponse, IBodyResponse<ILoginResponse>>(
             getLoginLinkUrl,
+            data,
+        );
+    }
+
+    login(data: ILoginForm) {
+        const loginLinkUrl = `${this.baseUrl}/login`;
+        data = this.beforeSave<ILoginForm>(data);
+        return this.client.post<ILoginResponse, IBodyResponse<ILoginResponse>>(
+            loginLinkUrl,
             data,
         );
     }

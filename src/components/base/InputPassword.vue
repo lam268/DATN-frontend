@@ -4,7 +4,7 @@
             >{{ label }} <span v-if="isRequired" class="mark-required">*</span></label
         >
         <el-input
-            v-model="inputValue"
+            v-model="inputData"
             :placeholder="placeholder"
             :type="isShowPassword ? 'text' : 'password'"
             :readonly="isReadonly"
