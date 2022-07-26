@@ -49,7 +49,7 @@ import SidebarInner from './SidebarInner.vue';
     },
 })
 export default class SideBar extends Vue {
-    isCollapse = true;
+    isCollapse = false;
 
     toggleSidebar(): void {
         this.isCollapse = !this.isCollapse;

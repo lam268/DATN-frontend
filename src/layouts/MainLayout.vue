@@ -29,7 +29,7 @@ import Sidebar from './components/Sidebar.vue';
     components: { Header, Sidebar },
 })
 export default class MainLayout extends Vue {
-    isCollapse = true;
+    isCollapse = false;
 
     handleToggleSidebar(isCollapse: boolean): void {
         this.isCollapse = isCollapse;

@@ -9,11 +9,11 @@
         <div class="layout-container">
             <div class="row row-content">
                 <!-- Sub right side bar -->
-                <div class="col-3">
+                <div class="col-xl-3 col-md-12 col-xs-12">
                     <RoleList />
                 </div>
                 <!-- Main-content -->
-                <div class="col-9">
+                <div class="col-xl-9 col-md-12 col-xs-12">
                     <div class="layout-information-role">
                         <RoleForm />
                     </div>
@@ -55,16 +55,19 @@ export default class RoleListPage extends mixins(UtilMixins) {
 .row-content {
     padding: 10px;
 }
-.col-3 {
-    width: 25%;
+.col-xl-3 {
     padding: 5px 20px 0px 20px;
 }
-.col-9 {
+.col-xl-9 {
     padding: 5px 20px 0px 0px;
     .layout-information-role {
         border: 1px #e0e0e0 solid;
         border-radius: 8px;
         background: white;
     }
+}
+.col-md-12,
+.col-xs-12 {
+    padding: 5px 20px 0px 20px;
 }
 </style>
