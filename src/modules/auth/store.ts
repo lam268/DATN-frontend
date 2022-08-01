@@ -10,7 +10,6 @@ import {
     ILoginForm,
 } from './types';
 import store from '@/store';
-import { useRouter } from 'vue-router';
 import { appService } from '@/utils/app';
 import { ITokenOption } from '@/utils/token';
 import { PageName } from '@/common/constants';
@@ -19,6 +18,7 @@ import { showAlertMessageFunction } from '@/utils/helper';
 import { IProvince, IUser } from '../user/types';
 import { ISelectOptions, IBodyResponse, IBank, IGetListResponse } from '@/common/types';
 import { IUserPosition } from '../setting/type';
+import router from '@/router';
 
 const initUser: IUserProfile = {
     id: NaN,
@@ -57,13 +57,13 @@ class AuthModule extends VuexModule {
     provinceOptions: ISelectOptions[] = [];
     userPositionList: IUserPosition[] = [];
     isDisabledSaveButton = false;
+    // router = useRouter();
 
     // GETTERS
 
     // actions
     @Action
     async loginWithGoogle(data: IGoogleLoginForm) {
-        const router = useRouter();
         try {
             const response = await authService.loginWithGoogle(data);
             if (response.success) {
@@ -104,9 +104,9 @@ class AuthModule extends VuexModule {
 
     @Action
     async loginWithEmail(data: ILoginForm) {
-        const router = useRouter();
         try {
             const response = await authService.login(data);
+            console.log(response);
             if (response.success) {
                 appService.setUser(response.data?.profile);
                 const token: ITokenOption = {
@@ -116,6 +116,7 @@ class AuthModule extends VuexModule {
                     refreshTokenExpiredAt: +response?.data?.refreshToken.expiresIn,
                 };
                 appService.setUserToken(token);
+                console.log(response.data.profile);
                 this.context.dispatch('setLoginUser', response.data?.profile, {
                     root: true,
                 });
