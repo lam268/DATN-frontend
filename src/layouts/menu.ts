@@ -6,6 +6,7 @@ import {
     Clock as ClockIcon,
     Key as KeyIcon,
     Setting as SettingIcon,
+    Calendar as CalendarIcon,
 } from '@element-plus/icons-vue';
 import { PermissionActions, PermissionResources } from '@/modules/role/constants';
 // start dashboardGroup
@@ -97,6 +98,24 @@ const timekeepingMenu: ISidebar = {
                 `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.UPDATE_STATUS}`,
             ],
         },
+        {
+            name: 'common.app.menu.timekeeping.requestTimeKeeping',
+            to: '/request-timeKeeping',
+            class: '',
+            active: false,
+            pageName: PageName.REQUEST_ABSENCE_PAGE,
+            requiredPermissions: [
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.READ}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.CREATE}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.DELETE}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.READ_PERSONAL}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.CREATE_PERSONAL}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE_PERSONAL}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.DELETE_PERSONAL}`,
+                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE_STATUS}`,
+            ],
+        },
     ],
 };
 
@@ -114,6 +133,19 @@ const roleMenu: ISidebar = {
         `${PermissionResources.ROLE}_${PermissionActions.CREATE}`,
         `${PermissionResources.ROLE}_${PermissionActions.UPDATE}`,
         `${PermissionResources.ROLE}_${PermissionActions.DELETE}`,
+    ],
+};
+
+const holidayMenu: ISidebar = {
+    iconComponent: CalendarIcon,
+    name: 'common.app.menu.settings.holiday',
+    to: '/setting/holiday',
+    class: '',
+    active: false,
+    pageName: PageName.SETTINGS_HOLIDAY_PAGE,
+    requiredPermissions: [
+        `${PermissionResources.SETTING}_${PermissionActions.READ}`,
+        `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
     ],
 };
 
@@ -137,17 +169,6 @@ const settings: ISidebar = {
             ],
         },
         {
-            name: 'common.app.menu.settings.holiday',
-            to: '/setting/holiday',
-            class: '',
-            active: false,
-            pageName: PageName.SETTINGS_HOLIDAY_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.SETTING}_${PermissionActions.READ}`,
-                `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
-            ],
-        },
-        {
             name: 'common.app.menu.settings.contractType',
             to: '/setting/contract-type',
             class: '',
@@ -158,14 +179,14 @@ const settings: ISidebar = {
                 `${PermissionResources.SETTING}_${PermissionActions.UPDATE}`,
             ],
         },
-        // {
-        //     name: 'common.app.menu.settings.resetPaidLeaveDays',
-        //     to: '/setting/reset-paid-leave-days',
-        //     class: '',
-        //     active: false,
-        //     pageName: PageName.SETTINGS_RESET_PAID_LEAVE_DAYS,
-        // },
     ],
 };
 
-export const sidebars = [dashboard, userMenu, timekeepingMenu, settings, roleMenu];
+export const sidebars = [
+    dashboard,
+    userMenu,
+    timekeepingMenu,
+    holidayMenu,
+    settings,
+    roleMenu,
+];

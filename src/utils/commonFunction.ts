@@ -68,7 +68,6 @@ export function hasPermissionToAccessRoute(requiredPermissions: string[]): boole
     if (!requiredPermissions || requiredPermissions.length === 0) return true;
     const user = appService.getUser();
     const resourceActionList: string[] = [];
-    console.log(user.role.permissions);
     user.role.permissions
         .filter((item) => item)
         .forEach((item) => {

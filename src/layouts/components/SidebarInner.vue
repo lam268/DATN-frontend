@@ -211,6 +211,7 @@ export default class SidebarInner extends Vue {
         .el-menu-item,
         .el-sub-menu {
             color: #212121;
+            border-radius: 8px;
             a {
                 padding-left: 25px;
             }
@@ -223,6 +224,7 @@ export default class SidebarInner extends Vue {
         }
 
         .el-menu-item {
+            border-radius: 8px;
             &.active-menu {
                 color: #212121;
                 background-color: #e6f6ff;
@@ -247,6 +249,7 @@ export default class SidebarInner extends Vue {
         }
         :deep(.el-sub-menu__title) {
             height: 40px;
+            border-radius: 8px;
             line-height: 40px;
             &:hover {
                 color: #212121;

@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-3">
             <div class="date-picker">
                 <BaseDatePicker
                     name="timekeeping month"
@@ -200,12 +200,18 @@ export default class TimekeepingInfo extends Vue {
 .remaining-hours-last-year {
     font-size: 11px;
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     left: 62px;
     font-weight: 500;
+    @media screen and (max-width: 1150px) {
+        bottom: 10px;
+    }
 }
 .timekeeping-card-container {
     padding-left: 10px !important;
     padding-right: 10px !important;
+    @media screen and (max-width: 1150px) {
+        margin-bottom: 15px;
+    }
 }
 </style>

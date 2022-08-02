@@ -9,6 +9,7 @@ export enum PermissionResources {
     ROLE = 'role',
     PERMISSION = 'permission',
     SETTING = 'setting',
+    REQUEST_TIMEKEEPING = 'request_timeKeeping',
 }
 
 export enum PermissionActions {

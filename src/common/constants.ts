@@ -3,6 +3,11 @@ export const MAIN_LAYOUT_NAME = 'MainLayout';
 export const LOGIN_LAYOUT_NAME = 'LoginLayout';
 export const ERROR_LAYOUT_NAME = 'ErrorLayout';
 
+export enum SupportLanguage {
+    EN = 'en',
+    VI = 'vi',
+};
+
 // max size upload file 10 * 1024 * 1024 = 10485760
 export const MAX_SIZE_FILE = 10485760;
 
@@ -168,10 +173,6 @@ export const MIN_DATE_PICKER = '1800-01-01 00:00:00';
 
 export const USER_LIMIT = 1000;
 
-export enum SupportLanguage {
-    EN = 'en',
-    VI = 'vi',
-}
 export const DEFAULT_ORDER_BY = 'createdAt';
 export const DEFAULT_ORDER_DIRECTION = OrderDirection.DESC;
 
@@ -185,6 +186,7 @@ export enum ModuleName {
     REQUEST_ABSENCE = 'requestAbsence',
     DASHBOARD_PAGE = 'dashboard',
     SETTING = 'setting',
+    REQUEST_TIMEKEEPING = 'requestTimeKeeping',
 }
 
 export enum SpecialPage {

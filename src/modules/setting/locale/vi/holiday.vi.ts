@@ -1,5 +1,5 @@
 export default {
-    title: 'Thiết lập ngày nghỉ lễ',
+    title: 'Ngày nghỉ lễ',
     popup: {
         form: {
             title: {

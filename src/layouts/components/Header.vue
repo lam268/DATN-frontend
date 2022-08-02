@@ -33,11 +33,13 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { appModule } from '@/store/app';
+import MenuLanguage from './MenuLanguage.vue';
 import MenuAccount from './MenuAccount.vue';
 
 @Options({
     components: {
         MenuAccount,
+        MenuLanguage,
     },
 })
 export default class Header extends Vue {
@@ -48,7 +50,7 @@ export default class Header extends Vue {
 </script>
 <style scoped lang="scss">
 .header {
-    background: #ffffff;
+    background: #fff;
     border-bottom: 1px solid #e0e0e0;
     height: 64px;
     left: 0;
@@ -146,6 +148,9 @@ export default class Header extends Vue {
     z-index: map-get($map: $zIndex, $key: mobileBtn);
     @media only screen and (max-width: 991.98px) {
         display: block;
+    }
+    &:hover {
+        cursor: pointer;
     }
 }
 </style>

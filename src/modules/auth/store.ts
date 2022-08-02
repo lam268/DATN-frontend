@@ -106,7 +106,6 @@ class AuthModule extends VuexModule {
     async loginWithEmail(data: ILoginForm) {
         try {
             const response = await authService.login(data);
-            console.log(response);
             if (response.success) {
                 appService.setUser(response.data?.profile);
                 const token: ITokenOption = {
@@ -116,7 +115,6 @@ class AuthModule extends VuexModule {
                     refreshTokenExpiredAt: +response?.data?.refreshToken.expiresIn,
                 };
                 appService.setUserToken(token);
-                console.log(response.data.profile);
                 this.context.dispatch('setLoginUser', response.data?.profile, {
                     root: true,
                 });

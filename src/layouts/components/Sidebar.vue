@@ -3,6 +3,16 @@
     <div class="sidebar" :class="isCollapse ? 'mini-sidebar' : ''">
         <div class="sidebar-inner">
             <SidebarInner :isCollapse="isCollapse" />
+            <el-drawer
+                :model-value="isShowMobileSidebar"
+                :close-on-press-escape="false"
+                :before-close="toggleMobileSidebar"
+                :with-header="false"
+                direction="ltr"
+                :size="270"
+            >
+                <SidebarInner :isCollapse="isCollapse" />
+            </el-drawer>
         </div>
         <div class="sidebar-minimizer" :class="{ collapse: isCollapse }">
             <a class="toggle_btn" @click="toggleSidebar">
@@ -30,6 +40,7 @@ import {
     QuestionFilled as QuestionIcon,
 } from '@element-plus/icons-vue';
 import SidebarInner from './SidebarInner.vue';
+import { appModule } from '@/store/app';
 
 @Options({
     components: {
@@ -54,6 +65,10 @@ export default class SideBar extends Vue {
     toggleSidebar(): void {
         this.isCollapse = !this.isCollapse;
         this.$emit('toggleSidebar', this.isCollapse);
+    }
+
+    get isShowMobileSidebar(): boolean {
+        return appModule.isShowMobileSidebar;
     }
 }
 </script>
@@ -116,7 +131,7 @@ export default class SideBar extends Vue {
 .sidebar-minimizer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 5px;
     position: sticky;
     align-items: center;

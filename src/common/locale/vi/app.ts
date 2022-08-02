@@ -1,9 +1,14 @@
 export default {
-    appName: 'ttlab-tims',
+    appName: 'unicorn-hrm',
     baseComponent: {
         pagination: {
             rowPerPage: 'dòng',
         },
+    },
+    menuLanguage: {
+        title: 'Tiếng Việt',
+        en: 'Tiếng Anh',
+        vi: 'Tiếng Việt',
     },
     menu: {
         dashboard: 'Trang chủ',
@@ -17,6 +22,7 @@ export default {
             timekeeping: 'Quản lý chấm công',
             requestAbsence: 'Quản lý nghỉ phép',
             generalSettings: 'Cài đặt chung',
+            requestTimeKeeping: 'Yêu cầu chấm công',
         },
         role: {
             subtitle: 'Vai trò',
@@ -30,10 +36,6 @@ export default {
             position: 'Chức danh',
             holiday: 'Ngày nghỉ lễ',
             contractType: 'Loại hợp đồng',
-            resetPaidLeaveDays: 'Lịch hủy ngày phép năm',
-        },
-        about: {
-            title: 'Về chúng tôi',
         },
     },
     menuAccount: {

@@ -124,6 +124,7 @@ export default {
                 [ModuleName.REQUEST_ABSENCE]: 'Yêu cầu nghỉ phép',
                 [ModuleName.DASHBOARD_PAGE]: 'Trang chủ',
                 [ModuleName.SETTING]: 'Cài đặt',
+                [ModuleName.REQUEST_TIMEKEEPING]: 'Yêu cầu chấm công',
             },
         },
         error: {
