@@ -51,7 +51,6 @@ class UserModule extends VuexModule {
 
     selectedUser: IUser | null = null;
     isOpenImportUserFilePopup = false;
-    isOpenUploadFingerFilePopup = false;
 
     importUsers: IImportUser[] = [];
     isOpenImportUserResultPopUp = false;
@@ -65,10 +64,6 @@ class UserModule extends VuexModule {
             PermissionResources.ROLE,
         );
         return [...userPermissions, ...rolePermissions];
-    }
-
-    get getIsOpenUploadFingerFilePopup(): boolean {
-        return this.isOpenUploadFingerFilePopup;
     }
 
     // ACTION
@@ -206,11 +201,6 @@ class UserModule extends VuexModule {
     }
 
     @Action
-    setIsOpenUploadFingerFilePopup(value: boolean) {
-        this.MUTATE_IS_OPEN_UPLOAD_FINGER_FILE_POPUP(value);
-    }
-
-    @Action
     setIsDisabledSaveButton(value: boolean) {
         this.MUTATE_IS_DISABLED_SAVE_BUTTON(value);
     }
@@ -306,11 +296,6 @@ class UserModule extends VuexModule {
     @Mutation
     MUTATE_IS_OPEN_IMPORT_USER_FILE_POPUP(value: boolean) {
         this.isOpenImportUserFilePopup = value;
-    }
-
-    @Mutation
-    MUTATE_IS_OPEN_UPLOAD_FINGER_FILE_POPUP(value: boolean) {
-        this.isOpenUploadFingerFilePopup = value;
     }
 
     @Mutation

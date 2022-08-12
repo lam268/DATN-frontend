@@ -36,6 +36,6 @@ export class RequestAbsenceMixins extends mixins(UtilMixins) {
     }
 
     formatDate(date: string): string {
-        return moment(date).fmFullTimeWithoutSecond();
+        return moment(date).add(7, 'hours').fmFullTimeWithoutSecond();
     }
 }

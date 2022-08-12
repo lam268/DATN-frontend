@@ -106,10 +106,10 @@ export default class TimeKeepingTable extends mixins(TimeKeepingMixins) {
             return false;
         }
         const startTime = timekeeping?.checkIn
-            ? moment(timekeeping.checkIn).fmHourMinuteString()
+            ? moment(timekeeping.checkIn).add(7, 'hours').fmHourMinuteString()
             : '';
         const endTime = timekeeping?.checkOut
-            ? moment(timekeeping.checkOut).fmHourMinuteString()
+            ? moment(timekeeping.checkOut).add(7, 'hours').fmHourMinuteString()
             : '';
         return `${startTime} - ${endTime}`;
     }

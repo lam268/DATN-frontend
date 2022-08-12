@@ -35,7 +35,7 @@ export const initForm = (): Record<string, string | unknown> => {
         const data: IHolidayCreate = {
             title: holiday.title?.trim() || '',
             description: holiday.description?.trim() || '',
-            date: moment(holiday.date).startOf('day').utc().fmFullTimeString() || '',
+            date: moment(holiday.date).startOf('day').fmFullTimeString() || '',
         };
 
         let response;

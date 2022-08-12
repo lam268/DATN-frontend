@@ -29,19 +29,6 @@
                         class="icon-button"
                     />
                 </el-tooltip>
-                <el-tooltip
-                    v-if="isCanCreate"
-                    :content="$t('user.list.upload.uploadFinger')"
-                    placement="top"
-                >
-                    <el-button
-                        :style="{ backgroundImage: `url(${uploadFingerImage})` }"
-                        size="medium"
-                        type="default"
-                        @click="onClickButtonUploadUserFingerFile"
-                        class="icon-button"
-                    />
-                </el-tooltip>
             </template>
         </BaseListPageHeader>
 
@@ -185,12 +172,6 @@ export default class UserListPage extends mixins(UtilMixins) {
 
     onClickButtonUploadUserFile(): void {
         userModule.setIsOpenImportUserFilePopup(!userModule.isOpenImportUserFilePopup);
-    }
-
-    onClickButtonUploadUserFingerFile(): void {
-        userModule.setIsOpenUploadFingerFilePopup(
-            !userModule.getIsOpenUploadFingerFilePopup,
-        );
     }
 }
 </script>

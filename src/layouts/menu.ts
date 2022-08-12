@@ -98,24 +98,6 @@ const timekeepingMenu: ISidebar = {
                 `${PermissionResources.REQUEST_ABSENCE}_${PermissionActions.UPDATE_STATUS}`,
             ],
         },
-        {
-            name: 'common.app.menu.timekeeping.requestTimeKeeping',
-            to: '/request-timeKeeping',
-            class: '',
-            active: false,
-            pageName: PageName.REQUEST_ABSENCE_PAGE,
-            requiredPermissions: [
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.READ}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.CREATE}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.DELETE}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.READ_PERSONAL}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.CREATE_PERSONAL}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE_PERSONAL}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.DELETE_PERSONAL}`,
-                `${PermissionResources.REQUEST_TIMEKEEPING}_${PermissionActions.UPDATE_STATUS}`,
-            ],
-        },
     ],
 };
 
