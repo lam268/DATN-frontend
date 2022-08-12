@@ -15,6 +15,9 @@
                 <el-button class="update-btn" @click="openEditProfilePopup">{{
                     $t(`auth.profile.buttons.updateProfile`)
                 }}</el-button>
+                <el-button class="change-btn" @click="openChangePasswordPopup">
+                    {{ $t(`auth.profile.buttons.changePassword`) }}
+                </el-button>
             </div>
         </div>
         <ProfileInfo />
@@ -65,6 +68,10 @@ export default class ProfilePage extends mixins(UtilMixins) {
         authModule.setUploadingAvatarUrl(authModule.avatarUrl);
         authModule.setIsShowPopupEditProfile(true);
     }
+
+    openChangePasswordPopup(): void {
+        authModule.setIsShowPopupChangePassword(true);
+    }
 }
 </script>
 
@@ -78,9 +85,15 @@ export default class ProfilePage extends mixins(UtilMixins) {
         justify-content: flex-start;
         width: 150px !important;
         float: left;
+        padding: 0px;
         width: auto;
         .update-btn {
             margin: 0 auto;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .change-btn {
+            margin: 10px auto;
             border-radius: 8px;
             font-size: 14px;
         }

@@ -24,6 +24,7 @@ export default {
         submit: 'Xác nhận',
         edit: 'Chỉnh sửa',
         updateProfile: 'Cập nhật',
+        changePassword: 'Sửa mật khẩu',
     },
     title: {
         updateProfile: 'Thay đổi thông tin cá nhân',

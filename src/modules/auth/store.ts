@@ -50,6 +50,7 @@ class AuthModule extends VuexModule {
     googleLoginLink = '';
     loginErrorMessage = '';
     isShowPopupEditProfile = false;
+    isShowPopupChangePassword = false;
     avatarUrl = '';
     uploadingAvatarUrl = '';
     userProfile: IUserProfile = { ...initUser };
@@ -233,7 +234,17 @@ class AuthModule extends VuexModule {
         this.MUTATE_UPLOADING_AVATAR_URL(url);
     }
 
+    @Action
+    setIsShowPopupChangePassword(value: boolean) {
+        this.MUTATE_IS_SHOW_POPUP_CHANGE_PASSWORD(value);
+    }
+
     // MUTATIONS
+
+    @Mutation
+    MUTATE_IS_SHOW_POPUP_CHANGE_PASSWORD(value: boolean) {
+        this.isShowPopupChangePassword = value;
+    }
 
     @Mutation
     MUTATE_IS_DISABLED_SAVE_BUTTON(isDisabledSaveButton: boolean) {
