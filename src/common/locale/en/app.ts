@@ -44,12 +44,6 @@ export default {
         confirm: 'Confirm',
         save: 'Save',
     },
-    tooltip: {
-        edit: 'Edit',
-        detail: 'Detail',
-        delete: 'Delete',
-        addRole: 'Add role',
-    },
     cPanel: {
         page: 'Page',
     },
@@ -65,26 +59,30 @@ export default {
     formPageHeader: {
         button: {
             resetButton: 'Reset',
-            submitButton: 'Submit',
+            submitButton: 'Save',
         },
     },
-    menuLanguage: {
-        title: 'English',
-        en: 'English',
-        vi: 'Vietnamese',
+    tooltip: {
+        edit: 'Edit',
+        detail: 'Detail',
+        delete: 'Delete',
+        addRole: 'Add role',
     },
-    pageNotFound: 'Oops! Không tìm thấy trang!',
-    backToHome: 'Trờ về trang chủ',
+    pageNotFound: 'Oops! Page not found!',
+    backToHome: 'Back to Homepage',
     action: {
-        create: 'Tạo',
-        update: 'Sửa',
-        edit: 'Sửa',
-        remove: 'Xóa',
-        delete: 'Xóa',
+        create: 'Create',
+        update: 'Update',
+        edit: 'Edit',
+        remove: 'Remove',
+        delete: 'Delete',
     },
-    notification: 'Thông báo',
+    notification: 'Notification',
     confirmSaveBox: {
-        save: 'Lưu',
-        dontSave: 'Không lưu',
+        save: 'Save',
+        dontSave: "Don't Save",
+    },
+    other: {
+        action: 'Action',
     },
 };

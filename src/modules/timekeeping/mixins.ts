@@ -163,12 +163,16 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
         const checkIn = timekeeping?.checkIn
             ? `${i18n.global.t('timekeeping.list.timeLine.checkIn')}: ${moment(
                   timekeeping?.checkIn,
-              ).fmHourMinuteString()} - `
+              )
+                  .add(7, 'hours')
+                  .fmHourMinuteString()} - `
             : '';
         const checkOut = timekeeping?.checkOut
             ? `${i18n.global.t('timekeeping.list.timeLine.checkOut')}: ${moment(
                   timekeeping?.checkOut,
-              ).fmHourMinuteString()}`
+              )
+                  .add(7, 'hours')
+                  .fmHourMinuteString()}`
             : '';
 
         if (checkIn.length || checkOut.length) {
@@ -239,13 +243,13 @@ export class TimeKeepingMixins extends mixins(UtilMixins) {
             !!timekeeping?.checkOut &&
             !timekeeping.requestAbsences.length &&
             moment(
-                moment(timekeeping?.checkIn).fmHourMinuteString(),
+                moment(timekeeping?.checkIn).add(7, 'hours').fmHourMinuteString(),
                 DATE_TIME_FORMAT.HH_MM_COLON,
             ).isSameOrBefore(
                 moment(workingTimes.morning.startTime, DATE_TIME_FORMAT.HH_MM_COLON),
             ) &&
             moment(
-                moment(timekeeping?.checkOut).fmHourMinuteString(),
+                moment(timekeeping?.checkOut).add(7, 'hours').fmHourMinuteString(),
                 DATE_TIME_FORMAT.HH_MM_COLON,
             ).isSameOrAfter(
                 moment(workingTimes.afternoon.endTime, DATE_TIME_FORMAT.HH_MM_COLON),

@@ -8,18 +8,6 @@ export interface IGeneralSettingForm {
     value: Record<SupportLanguage, string>;
     isNew?: boolean;
 }
-
-export interface IResetPaidLeaveDaysScheduleForm {
-    year: string;
-    resetDate: string;
-    yearError: string;
-    dateError: string;
-}
-
-export interface IResetPaidLeaveDaysSchedule {
-    year: string;
-    resetDate: string;
-}
 export interface IGeneralSetting<T> {
     key: SettingKey;
     values: T[];

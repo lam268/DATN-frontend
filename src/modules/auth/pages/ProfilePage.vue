@@ -21,7 +21,7 @@
             </div>
         </div>
         <ProfileInfo />
-
+        <ChangePassword />
         <EditProfileForm />
     </div>
 </template>
@@ -34,10 +34,12 @@ import { Options } from 'vue-class-component';
 import { authModule } from '@auth/store';
 import { ElLoading } from 'element-plus';
 import ProfileInfo from '../components/ProfileInfo.vue';
+import ChangePassword from '../components/ChangePassword.vue';
 @Options({
     components: {
         ProfileInfo,
         EditProfileForm,
+        ChangePassword,
     },
 })
 export default class ProfilePage extends mixins(UtilMixins) {

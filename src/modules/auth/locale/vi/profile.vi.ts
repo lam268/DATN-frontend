@@ -18,6 +18,19 @@ export default {
         taxCode: 'Mã số thuế',
         socialInsurance: 'Bảo hiểm xã hội',
         status: 'Trạng thái',
+        oldPassword: 'Mật khẩu hiện tại',
+        newPassword: 'Mật khẩu mới',
+        reNewPassword: 'Xác nhận mật khẩu',
+        placeholder: {
+            oldPassword: 'Nhập mật khẩu hiện tại',
+            newPassword: 'Nhập mật khẩu mới',
+            reNewPassword: 'Nhập xác nhận mật khẩu',
+        },
+    },
+    changePassword: {
+        title: 'Thay đổi mật khẩu',
+        success: 'Thay mật khẩu thành công!',
+        dontmatch: 'Mật khẩu không trùng khớp',
     },
     buttons: {
         cancel: 'Hủy',

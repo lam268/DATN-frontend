@@ -3,6 +3,7 @@ import {
     IGoogleLoginForm,
     ILoginResponse,
     ILoginForm,
+    IChangePassword,
 } from '../types';
 import { IBodyResponse } from '@/common/types';
 import service from '@/plugins/axios';
@@ -43,6 +44,11 @@ class AuthApiService extends BaseService {
     updateProfile<P>(params: P): Promise<IBodyResponse> {
         params = this.beforeUpdate<P>(params);
         return this.client.patch(this.updateUrl, params);
+    }
+
+    changePassword(data: IChangePassword) {
+        const changePasswordUrl = `${this.baseUrl}/change-password`;
+        return this.client.post(changePasswordUrl, data);
     }
 }
 export const authService = new AuthApiService({ baseUrl: '/auth' }, service);

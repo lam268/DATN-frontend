@@ -2,7 +2,6 @@ import { RouteRecordRaw } from 'vue-router';
 import SettingUserPositionPage from './pages/SettingUserPositionPage.vue';
 import SettingHolidayPage from './pages/SettingHoliday.vue';
 import ContractTypePage from './pages/ContractTypePage.vue';
-import SettingResetPaidLeaveDaysPage from './pages/ResetPaidLeaveDaysPage.vue';
 import { PageName } from '@/common/constants';
 import MainLayout from '@/layouts/MainLayout.vue';
 export default [
@@ -32,15 +31,6 @@ export default [
                 path: 'contract-type',
                 name: PageName.SETTINGS_CONTRACT_TYPE_PAGE,
                 component: ContractTypePage,
-                meta: {
-                    requiresAuth: true,
-                    name: PageName.SETTINGS_CONTRACT_TYPE_PAGE,
-                },
-            },
-            {
-                path: 'reset-paid-leave-days',
-                name: PageName.SETTINGS_RESET_PAID_LEAVE_DAYS,
-                component: SettingResetPaidLeaveDaysPage,
                 meta: {
                     requiresAuth: true,
                     name: PageName.SETTINGS_CONTRACT_TYPE_PAGE,

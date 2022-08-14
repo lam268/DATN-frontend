@@ -76,7 +76,7 @@
                     >
                         <el-tooltip
                             effect="dark"
-                            :content="$t('event.list.tooltip.edit')"
+                            :content="$t('contract.list.contractTable.tooltip.edit')"
                             placement="top"
                         >
                             <el-button
@@ -90,7 +90,7 @@
                         </el-tooltip>
                         <el-tooltip
                             effect="dark"
-                            :content="$t('event.list.tooltip.delete')"
+                            :content="$t('contract.list.contractTable.tooltip.delete')"
                             placement="top"
                         >
                             <el-button

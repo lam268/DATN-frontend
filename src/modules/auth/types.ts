@@ -59,3 +59,8 @@ export interface IOption {
     label: string | null;
     value: number | string;
 }
+
+export interface IChangePassword {
+    oldPassword: string;
+    newPassword: string;
+}

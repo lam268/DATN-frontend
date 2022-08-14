@@ -69,13 +69,6 @@
                     </h5>
                     <span>{{ paidLeaveHoursLeft }}</span>
                 </div>
-                <span class="remaining-hours-last-year">
-                    {{
-                        $t(
-                            'dashboard.dashboard.timekeepingInfo.annualLeaveHoursLastYear',
-                        )
-                    }}: {{ lastYearRemainingPaidLeaveHours }}
-                </span>
             </div>
         </div>
     </div>
@@ -195,16 +188,6 @@ export default class TimekeepingInfo extends Vue {
     display: flex;
     .form-group {
         margin-bottom: 5px;
-    }
-}
-.remaining-hours-last-year {
-    font-size: 11px;
-    position: absolute;
-    bottom: 2px;
-    left: 62px;
-    font-weight: 500;
-    @media screen and (max-width: 1150px) {
-        bottom: 10px;
     }
 }
 .timekeeping-card-container {

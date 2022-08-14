@@ -109,11 +109,6 @@ export default {
             reject: 'Từ chối',
             editEmail: 'Sửa email',
             sendEmail: 'Gửi email',
-            addSchedule: 'Thêm lịch phỏng vấn',
-            deleteEmail: 'Xóa email',
-            editCandidate: 'Sửa ứng viên',
-            deleteSchedule: 'Xóa lịch phỏng vấn',
-            updateSchedule: 'Cập nhật lịch phỏng vấn',
             createPast: 'Tạo yêu cầu trong quá khứ',
             hrRole: 'Quyền HR',
             module: {

@@ -315,7 +315,8 @@ export default class UserForm extends mixins(UtilMixins) {
 
     get isCanUpdateRole(): boolean {
         return checkUserHasPermission(userModule.userPermissions, [
-            `${PermissionResources.USER}_${PermissionActions.UPDATE_ROLE}`,
+            `${PermissionResources.USER}_${PermissionActions.UPDATE}`,
+            `${PermissionResources.ROLE}_${PermissionActions.UPDATE}`,
         ]);
     }
 

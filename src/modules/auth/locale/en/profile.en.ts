@@ -18,6 +18,19 @@ export default {
         taxCode: 'Tax code',
         socialInsurance: 'Social insurance',
         status: 'Status',
+        oldPassword: 'Current password',
+        newPassword: 'New password',
+        reNewPassword: 'Confirm new password',
+        placeholder: {
+            oldPassword: 'Input current password',
+            newPassword: 'Input new password',
+            reNewPassword: 'Input confirm new password',
+        },
+    },
+    changePassword: {
+        title: 'Change password',
+        success: 'Change password successfully!',
+        dontmatch: "Password don't match",
     },
     buttons: {
         cancel: 'Cancel',

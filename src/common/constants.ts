@@ -3,10 +3,12 @@ export const MAIN_LAYOUT_NAME = 'MainLayout';
 export const LOGIN_LAYOUT_NAME = 'LoginLayout';
 export const ERROR_LAYOUT_NAME = 'ErrorLayout';
 
+export const PASSWORD_MIN_LENGTH = 6;
+
 export enum SupportLanguage {
     EN = 'en',
     VI = 'vi',
-};
+}
 
 // max size upload file 10 * 1024 * 1024 = 10485760
 export const MAX_SIZE_FILE = 10485760;
@@ -148,7 +150,6 @@ export enum PageName {
     SETTINGS_POSITION_PAGE = 'SettingsPositionPage',
     SETTINGS_HOLIDAY_PAGE = 'SettingsHolidayPage',
     SETTINGS_CONTRACT_TYPE_PAGE = 'SettingContractTypePage',
-    SETTINGS_RESET_PAID_LEAVE_DAYS = 'SettingResetPaidLeaveDaysPage',
     SETTINGS_APPLIED_POSITION_PAGE = 'SettingAppliedPositionPage',
 }
 
