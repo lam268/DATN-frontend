@@ -121,12 +121,12 @@ export function initData(): Record<string, unknown> {
                 const requestAbsence = response.data;
                 const startDateFormat = moment(requestAbsence?.startAt as string);
                 const endDateFormat = moment(requestAbsence?.endAt as string);
-                const fmDateStart = moment(
-                    requestAbsence.startAt as string,
-                ).fmHourMinuteString();
-                const fmDateEnd = moment(
-                    requestAbsence.endAt as string,
-                ).fmHourMinuteString();
+                const fmDateStart = moment(requestAbsence.startAt as string)
+                    .add(7, 'hours')
+                    .fmHourMinuteString();
+                const fmDateEnd = moment(requestAbsence.endAt as string)
+                    .add(7, 'hours')
+                    .fmHourMinuteString();
 
                 let shift: Shift | string = '';
                 let type: RequestAbsenceType;

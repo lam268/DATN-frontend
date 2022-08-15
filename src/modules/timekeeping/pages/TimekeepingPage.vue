@@ -187,6 +187,7 @@ export default class TimekeepingPage extends mixins(UtilMixins) {
         loading.close();
         const fileName = response.data?.fileName;
         const downloadUrl = `${process.env.VUE_APP_API_BASE_URL}/export-data/${fileName}`;
+        console.log(downloadUrl);
         downloadFile(fileName, downloadUrl);
     }
 

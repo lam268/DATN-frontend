@@ -71,10 +71,14 @@ export function initData(): Record<string, unknown> {
                         userId: timeKeepingCreate.userId as number,
                         dateTime: moment(response.data.scanAt).fmDayString(),
                         startTime: response.data?.checkIn
-                            ? moment(response.data.checkIn).fmFullTimeString()
+                            ? moment(response.data.checkIn)
+                                  .add(7, 'hour')
+                                  .fmFullTimeString()
                             : null,
                         endTime: response.data?.checkOut
-                            ? moment(response.data.checkOut).fmFullTimeString()
+                            ? moment(response.data.checkOut)
+                                  .add(7, 'hour')
+                                  .fmFullTimeString()
                             : null,
                     },
                 });
